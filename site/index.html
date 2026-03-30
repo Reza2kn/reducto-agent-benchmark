@@ -19,6 +19,7 @@
       --accent-1: #6e8cff;  /* benchmark blue */
       --accent-2: #ff7eb3;  /* demo pink      */
       --accent-3: #52d9c2;  /* mcp teal       */
+      --accent-4: #f5a623;  /* mcp race amber */
       --text: #e8eaf0;
       --sub:  #7a7f96;
     }
@@ -45,6 +46,7 @@
     .glow-a { width: 600px; height: 600px; background: var(--accent-1); top: -200px; left: -150px; }
     .glow-b { width: 500px; height: 500px; background: var(--accent-2); bottom: -150px; right: -100px; }
     .glow-c { width: 400px; height: 400px; background: var(--accent-3); top: 40%; left: 50%; transform: translate(-50%, -50%); }
+    .glow-d { width: 350px; height: 350px; background: var(--accent-4); top: 20%; right: -80px; }
 
     /* ── layout ── */
     .page {
@@ -151,6 +153,7 @@
     .blob-bench  { --blob-bg: #141720; --accent-color: var(--accent-1); }
     .blob-demo   { --blob-bg: #17131d; --accent-color: var(--accent-2); }
     .blob-mcp    { --blob-bg: #101a19; --accent-color: var(--accent-3); }
+    .blob-race   { --blob-bg: #1a1510; --accent-color: var(--accent-4); }
 
     /* ── blob internals ── */
     .blob-icon {
@@ -216,6 +219,7 @@
   <div class="glow glow-a"></div>
   <div class="glow glow-b"></div>
   <div class="glow glow-c"></div>
+  <div class="glow glow-d"></div>
 
   <main class="page">
 
@@ -234,29 +238,29 @@
          target="_blank" rel="noopener">
         <div class="blob-icon">📊</div>
         <div class="blob-label">Benchmark</div>
-        <div class="blob-title">Agent Platform<br>Comparison</div>
+        <div class="blob-title">20 Models ×<br>22 Hard Probes</div>
         <div class="blob-desc">
-          How well do Claude Code, Cursor, Codex, Gemini CLI, and Cline actually use the Reducto API? Six dimensions, scored across five platforms.
+          432 runs across frontier models — Kimi, Claude, GPT, Gemini, Qwen, and more — on API-specific tasks no general benchmark covers.
         </div>
         <div class="blob-cta">View results →</div>
       </a>
 
-      <!-- 2 · Live Demo -->
-      <a class="blob blob-demo tilt-card"
-         href="https://huggingface.co/spaces/Reza2kn/agentreducto-demo"
+      <!-- 2 · MCP Race -->
+      <a class="blob blob-race tilt-card"
+         href="https://mcp.agentreducto.com"
          target="_blank" rel="noopener">
-        <div class="blob-icon">🤗</div>
-        <div class="blob-label">Live Demo</div>
-        <div class="blob-title">Try the Model<br>in Your Browser</div>
+        <div class="blob-icon">🏎️</div>
+        <div class="blob-label">MCP Race</div>
+        <div class="blob-title">26 Models ×<br>7 MCP Probes</div>
         <div class="blob-desc">
-          The quantized 0.8B model running in-browser via WebGPU. Throw hard multi-hop document tasks at it — extract, split, classify, chain.
+          26 frontier models vs. 7 adversarial enterprise workflows — multi-hop chains, persisted job fan-outs, agentic scope arrays. Reveals which models read MCP tool definitions vs. hallucinating REST API params.
         </div>
-        <div class="blob-cta">Open demo →</div>
+        <div class="blob-cta">Race results →</div>
       </a>
 
       <!-- 3 · MCP Server -->
       <a class="blob blob-mcp tilt-card"
-         href="https://github.com/Reza2kn/reducto-agent-benchmark/tree/main/mcp-server"
+         href="https://github.com/Reza2kn/reducto-agent-benchmark/tree/main/mcp-server#readme"
          target="_blank" rel="noopener">
         <div class="blob-icon">🔌</div>
         <div class="blob-label">MCP Server</div>

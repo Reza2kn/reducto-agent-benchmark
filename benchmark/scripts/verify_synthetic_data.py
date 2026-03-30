@@ -242,11 +242,22 @@ def _tool_fingerprint(tool_calls: list[dict]) -> str:
     return "|".join(sorted(parts))
 
 
-def build_consensus_groups(examples: list[dict]) -> dict:
-    """Group examples by (probe_id, prompt_fingerprint) and collect teacher votes."""
+def build_consensus_groups(examples: list[dict], top_teachers: set = None) -> dict:
+    """Group examples by (probe_id, prompt_fingerprint) and collect teacher votes.
+
+    If top_teachers is provided, only votes from those teachers count toward L3
+    consensus.  Examples from other teachers still pass L1/L2 — they just don't
+    influence the majority fingerprint.
+    """
     groups = defaultdict(lambda: defaultdict(int))  # key → fingerprint → count
     for ex in examples:
-        meta  = ex.get("metadata", {})
+        meta    = ex.get("metadata", {})
+        teacher = meta.get("teacher", "")
+
+        # Skip this example's vote if it's not from an approved teacher
+        if top_teachers and teacher not in top_teachers:
+            continue
+
         msgs  = ex.get("messages", [])
         probe = meta.get("probe_id", "")
         user  = next((m["content"] for m in msgs if m["role"] == "user"), "")
@@ -424,8 +435,10 @@ class VerifyStats:
 def verify_examples(
     examples: list[dict],
     use_probe_check: bool = True,
+    use_tool_hints: bool = True,
     use_consensus: bool = True,
     consensus_threshold: int = 3,
+    top_teachers: set = None,
     min_probe_score: int = 2,
     use_reducto_api: bool = True,
     l4_sample_rate: float = 0.10,
@@ -437,7 +450,7 @@ def verify_examples(
     checkers = load_probe_checkers() if use_probe_check else {}
 
     # Pre-build consensus groups (layer 3)
-    groups = build_consensus_groups(examples) if use_consensus else {}
+    groups = build_consensus_groups(examples, top_teachers=top_teachers) if use_consensus else {}
 
     # L4: resolve API key
     if use_reducto_api and not reducto_api_key:
@@ -472,7 +485,8 @@ def verify_examples(
 
         # ── Layer 1: schema ──
         rejections += validate_schema(tool_calls)
-        rejections += validate_tool_hints(user, tool_calls)
+        if use_tool_hints:
+            rejections += validate_tool_hints(user, tool_calls)
 
         if rejections:
             stats.rejected_l1 += 1
@@ -532,13 +546,23 @@ def save_verified(
     out_dir: Path,
     train_n: int = 16_669,
     val_n: int   = 3_669,
+    save_all: bool = False,
 ):
-    """Write exactly train_n train examples and val_n val examples.
+    """Write verified splits.
 
-    Aborts (without writing) if the verified pool is smaller than train_n + val_n,
-    because a short split defeats the purpose of having fixed target sizes.
+    If save_all=True, write ALL verified examples to verified_all.jsonl (no split).
+    Otherwise write exactly train_n + val_n examples; aborts if pool is too small.
     """
     import random
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    random.shuffle(examples)
+
+    if save_all:
+        path = out_dir / "verified_all.jsonl"
+        path.write_text("\n".join(json.dumps(e) for e in examples))
+        print(f"  verified_all.jsonl   : {len(examples):,}")
+        return path, None
 
     need = train_n + val_n
     if len(examples) < need:
@@ -550,8 +574,6 @@ def save_verified(
         )
         return None, None
 
-    out_dir.mkdir(parents=True, exist_ok=True)
-    random.shuffle(examples)
     train = examples[:train_n]
     val   = examples[train_n : train_n + val_n]
 
@@ -593,9 +615,16 @@ def main():
     parser.add_argument("--output", default=str(DATA_DIR),
                         help="Output directory for verified splits")
     parser.add_argument("--no-probe-check",  action="store_true")
+    parser.add_argument("--no-tool-hints",   action="store_true",
+                        help="Skip L1b tool-hint check (use for MCP data where multi-step "
+                             "prompts mention doc content keywords not tied to a single tool)")
     parser.add_argument("--no-consensus",    action="store_true")
     parser.add_argument("--consensus-threshold", type=int, default=3,
                         help="Min teacher votes for consensus (default: 3)")
+    parser.add_argument("--top-teachers", default="",
+                        help="Comma-separated teacher display names whose votes count in L3 "
+                             "(e.g. 'Claude Haiku 4.5 + thinking,Gemini 3.1 Flash Lite (preview),"
+                             "MiniMax M2.7 (highspeed)'). Default: all teachers vote.")
     parser.add_argument("--no-l4",           action="store_true",
                         help="Skip Layer 4 Reducto live API spot-check")
     parser.add_argument("--l4-sample-rate",  type=float, default=0.10,
@@ -608,6 +637,8 @@ def main():
                         help="Exact training split size (default: 16,669)")
     parser.add_argument("--val-n",   type=int, default=3_669,
                         help="Exact validation split size (default: 3,669)")
+    parser.add_argument("--save-all", action="store_true",
+                        help="Save ALL verified examples to verified_all.jsonl (no train/val split)")
     parser.add_argument("--report-only", action="store_true",
                         help="Print stats only, don't write output files")
     parser.add_argument("--verbose", "-v", action="store_true")
@@ -639,6 +670,10 @@ def main():
         print(f"  (skipped {skipped_dry} dry-run examples)", end="")
     print()
 
+    top_teachers = set(t.strip() for t in args.top_teachers.split(",") if t.strip()) or None
+    if top_teachers:
+        print(f"  Layer 3: only counting votes from: {', '.join(sorted(top_teachers))}")
+
     l4_rate = 1.0 if args.l4_full else args.l4_sample_rate
     if not args.no_l4:
         api_key = args.reducto_api_key or os.environ.get("REDUCTO_API_KEY", "")
@@ -649,20 +684,24 @@ def main():
 
     verified, stats = verify_examples(
         examples,
-        use_probe_check  = not args.no_probe_check,
-        use_consensus    = not args.no_consensus,
+        use_probe_check     = not args.no_probe_check,
+        use_tool_hints      = not args.no_tool_hints,
+        use_consensus       = not args.no_consensus,
         consensus_threshold = args.consensus_threshold,
-        use_reducto_api  = not args.no_l4,
-        l4_sample_rate   = l4_rate,
-        reducto_api_key  = args.reducto_api_key or os.environ.get("REDUCTO_API_KEY", ""),
-        verbose          = args.verbose,
+        top_teachers        = top_teachers,
+        use_reducto_api     = not args.no_l4,
+        l4_sample_rate      = l4_rate,
+        reducto_api_key     = args.reducto_api_key or os.environ.get("REDUCTO_API_KEY", ""),
+        verbose             = args.verbose,
     )
 
     print_report(stats)
 
     if not args.report_only:
         print(f"\nSaving verified splits to {args.output}/")
-        save_verified(verified, Path(args.output), train_n=args.train_n, val_n=args.val_n)
+        save_verified(verified, Path(args.output),
+                      train_n=args.train_n, val_n=args.val_n,
+                      save_all=args.save_all)
         print("\nTrain on these files — not the raw checkpoint.")
 
 if __name__ == "__main__":

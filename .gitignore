@@ -28,3 +28,4 @@ local-models/
 
 # OS
 .DS_Store
+H100/qwen-0.8b/
