@@ -74,6 +74,8 @@ agentjson_tool_dispatch
 
 26 frontier models on 7 adversarial enterprise workflows — multi-hop chains, persisted job fan-outs, dual-doc parallel processing, agentic scope arrays. Tests whether a model reads the MCP tool definition or hallucinates REST API params.
 
+**Tool schemas used in the race are sourced directly from the [Reducto MCP server](mcp-server/) in this repo** — exact parameter names, types, and descriptions from `mcp-server/src/index.ts`. Adversarial prompts deliberately use REST API param names (e.g. `schema_json`, `allow`) to surface models that hallucinate instead of reading the spec. A model that has seen or been trained on our MCP server will have a structural advantage.
+
 **Live results:** [mcp.agentreducto.com](https://mcp.agentreducto.com)
 
 ### Top 3 (perfect or near-perfect)
