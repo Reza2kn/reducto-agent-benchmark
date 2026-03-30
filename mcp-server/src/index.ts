@@ -459,7 +459,7 @@ server.tool(
           text:
             `Split complete | ${result.usage?.num_pages ?? "?"} pages, ` +
             `${result.usage?.credits ?? "?"} credits, ${result.duration?.toFixed(1) ?? "?"}s\n` +
-            `Job ID: ${result.job_id}\n\n` +
+            (result.job_id ? `Job ID: ${result.job_id}\n\n` : "") +
             (splits ?? "No splits returned.") +
             "\n\n💡 Use page ranges above with reducto_parse(page_range_start, page_range_end) to process each section individually.",
         },
