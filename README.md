@@ -8,7 +8,7 @@
 
 | Component | Status |
 |-----------|--------|
-| Hard-probe benchmark — 20 models × 22 probes | ✅ 432 runs complete |
+| API probe benchmark — 27 models · 22 hard + 10 standard probes | ✅ 502 runs complete |
 | MCP Race — 27 models × 7 adversarial MCP probes | ✅ complete |
 | Live tracker UI | ✅ benchmark.agentreducto.com |
 | MCP server v0.2.0 — all 7 tools | ✅ fully tested |
@@ -24,48 +24,68 @@
 
 ---
 
-## Hard Probe Benchmark
+## API Probe Benchmark
 
-22 API-specific probes scored 0–3 across 20 frontier models. Not a vibe check — each probe tests whether the model picks the right Reducto endpoint, constructs correct parameters, and handles edge cases without hand-holding.
+Two tiers of API-specific probes, each scored 0–3. Tests whether the model picks the right endpoint, constructs correct parameters, handles edge cases and multi-hop chains without hand-holding.
 
 **Live results:** [benchmark.agentreducto.com](https://benchmark.agentreducto.com)
 
-### Models Tested (20)
+### Hard Probes — 17 models × 22 probes (354 runs)
 
-| Model | Probes |
-|-------|--------|
-| Claude Opus 4.6 + thinking | 22/22 ✅ |
-| Claude Haiku 4.5 + thinking | 22/22 ✅ |
-| OpenAI o3 (reasoning=high) | 22/22 ✅ |
-| OpenAI o4-mini (reasoning=high) | 22/22 ✅ |
-| GPT-5.4 Mini | 22/22 ✅ |
-| GPT-5.4 Nano | 22/22 ✅ |
-| GPT-OSS 20B via Groq | 22/22 ✅ |
-| Gemini 3.1 Flash Lite (preview) | 22/22 ✅ |
-| Gemini 3.1 Pro (custom-tools preview) | 20/22 ✅ |
-| Kimi K2.5 via Fireworks | 22/22 ✅ |
-| MiniMax M2.7 (highspeed) | 22/22 ✅ |
-| Qwen3.5-122B-A10B | 22/22 ✅ |
-| Qwen3.5-35B-A3B (Atlas Cloud fp8) | 22/22 ✅ |
-| Qwen3 32B via Groq | 20/22 ✅ |
-| Inception Mercury 2 | 22/22 ✅ |
-| GLM-5 Turbo | 22/22 ✅ |
-| Xiaomi MiMo V2 Pro (fp8) | 22/22 ✅ |
-| StepFun Step-3.5 Flash | 22/22 ✅ |
-| Nemotron Nano 30B (DeepInfra fp4) | 22/22 ✅ |
-| Qwen-0.8B-AgentJSON-Q6K (local) | 18/22 ✅ |
-
-### 22 Hard Probes
+| Model | Score |
+|-------|-------|
+| Claude Haiku 4.5 + thinking | 62/66 |
+| Gemini 3.1 Flash Lite (preview) | 62/66 |
+| Qwen3.5-122B-A10B | 62/66 |
+| OpenAI o3 (reasoning=high) | 61/66 |
+| Gemini 3.1 Pro (custom-tools preview) | 59/66 |
+| Claude Opus 4.6 + thinking | 57/60 (20/22 probes) |
+| GPT-OSS 20B via Groq | 57/66 |
+| StepFun Step-3.5 Flash | 57/66 |
+| Nemotron Nano 30B (DeepInfra fp4) | 55/66 |
+| Qwen3 Coder Next (ionstream fp8) | 52/66 |
+| OpenAI o4-mini (reasoning=high) | 51/66 |
+| Qwen-0.8B-AgentJSON-Q6K (local) | 38/66 |
+| Nemotron Super 120B (Nebius bf16) | 32/66 |
+| Codex Mini Latest | 6/66 |
+| Arcee Trinity Large (prime) | 3/66 |
+| Mistral Devstral Small | 0/66 |
 
 ```
-fmt_parse_chunk_mode       fmt_parse_table_format     fmt_parse_page_range
-fmt_parse_filter_blocks    fmt_parse_agentic_scopes   fmt_extract_schema
-fmt_extract_array          fmt_split_description      fmt_classify_schema
-chain_upload_then_parse    chain_parse_persist_jobid  chain_jobid_extract
-chain_jobid_split          sel_parse_vs_extract       sel_extract_vs_classify
-sel_split_vs_parse         edge_bad_url               edge_expired_jobid
-edge_malformed_schema      edge_large_doc_page_range  hard_multiop_pipeline
-agentjson_tool_dispatch
+chunk_section_rag      citations_bbox          citations_no_chunking
+classify_page_limit    classify_then_route     edit_basic_fill
+edit_flatten_lock      edit_form_schema        embedding_optimized_flag
+empty_result_ocr_retry filter_blocks_clean     get_job_poll
+include_images_chart   jobid_expiry_recovery   merge_tables_crosspage
+optimize_latency_not_deep  page_range_cost     return_images_array
+split_then_extract_section system_prompt_units table_cutoff_preserve
+upload_reuse
+```
+
+### Standard Probes — 15 models × 10 probes (150 runs)
+
+| Model | Score |
+|-------|-------|
+| Claude Haiku 4.5 + thinking | 29/30 |
+| GPT-5.4 Mini | 29/30 |
+| Inception Mercury 2 | 29/30 |
+| Inception Mercury Coder | 29/30 |
+| OpenAI o4-mini (reasoning=high) | 29/30 |
+| GPT-5.4 Nano | 28/30 |
+| Qwen3.5-35B-A3B (Atlas Cloud fp8) | 28/30 |
+| Xiaomi MiMo V2 Pro (fp8) | 27/30 |
+| Qwen3.5 Flash (02-23) | 26/30 |
+| Qwen3 Coder Next (ionstream fp8) | 25/30 |
+| Mistral Devstral Small | 23/30 |
+| Qwen-0.8B-AgentJSON-Q6K (local) | 21/30 |
+| Qwen-0.8B-ReductoLoRA-Q6K (local) | 20/30 |
+| Alibaba Tongyi DeepResearch 30B-A3B | 17/30 |
+| Liquid LFM-2.5 1.2B Thinking (free) | 0/30 |
+
+```
+agentic_scopes   array_extract      deep_extract_off  document_metadata
+jobid_chaining   jsonbbox_format    ocr_mode          return_figure_images
+split_rules      url_array
 ```
 
 ---
