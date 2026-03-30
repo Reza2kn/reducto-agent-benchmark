@@ -1,0 +1,349 @@
+[
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://abb3b9eb-90f9-4171-b732-857ff91bb7ac",
+          "optimize_for_latency": "True"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "{'message': 'Provider returned error', 'code': 400}"
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": "True"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "18a28ca7-ef1b-4a80-8f18-6ee42293d5ed"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://18a28ca7-ef1b-4a80-8f18-6ee42293d5ed",
+          "table_format": "jsonbbox",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://5fd45967-aaf3-4b52-8c51-2bb299d57812",
+          "table_format": "jsonbbox",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://a2af20eb-ea39-4920-937a-3ef2b7c65aad",
+          "table_format": "jsonbbox"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://6a7bd8f4-5db5-4595-bd91-e5d7007ee65a",
+          "table_format": "jsonbbox"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "return_figure_images": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "6350128c-98b3-4a4c-80ab-99e9dc7baacc"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Cover Page\", \"description\": \"The first page of the document, typically containing the title, account holder name, and date.\"}, {\"name\": \"Account Summary\", \"description\": \"A section summarizing key account information, usually including account balance, performance, and key metrics.\"}, {\"name\": \"Holdings\", \"description\": \"A detailed list of the investments held in the account, typically presented in a table format.\"}, {\"name\": \"Income Summary\", \"description\": \"A section summarizing income generated by the account, such as dividends, interest, and capital gains.\"}]",
+          "split_rules": "if a section boundary falls in the middle of a table, extend the section to include the complete table \u2014 never split a table across sections",
+          "table_cutoff": "preserve"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "ocr"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"invoice\", \"criteria\": \"A bill from a vendor to a buyer, listing goods/services provided and amounts due.\"}, {\"category\": \"purchase order\", \"criteria\": \"A commercial document issued by a buyer to a seller, indicating types, quantities, and agreed prices for products/services.\"}, {\"category\": \"financial statement\", \"criteria\": \"A formal record of the financial activities and position of a person, business, or other entity, including balance sheets, income statements, or cash flow statements.\"}]",
+          "document_metadata": "Source: accounts payable automation pipeline. Expected types: invoice, purchase order, or financial statement."
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"invoice\", \"criteria\": [\"A bill from a vendor to a buyer, listing goods/services provided and amounts due.\"]}, {\"category\": \"purchase order\", \"criteria\": [\"A commercial document issued by a buyer to a seller, indicating types, quantities, and agreed prices for products/services.\"]}, {\"category\": \"financial statement\", \"criteria\": [\"A formal record of the financial activities and position of a person, business, or other entity, including balance sheets, income statements, or cash flow statements.\"]}]",
+          "document_metadata": "Source: accounts payable automation pipeline. Expected types: invoice, purchase order, or financial statement."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "json"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"reducto://e5a8f45e-3018-4a9a-8756-6ce6399232f8\", \"reducto://eca1dbe2-6126-4876-9bd1-91f758e0520a\", \"reducto://0aaf1451-09a5-4a42-9069-398cb4cd7249\"]",
+          "table_format": "json"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://e5a8f45e-3018-4a9a-8756-6ce6399232f8",
+          "table_format": "json"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://39274829-55ae-487d-99b2-a50d6eeaf18b",
+          "table_format": "json"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "d51fb749-86a1-498d-ae71-fafe5b7a853d"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": "True",
+          "return_images_types": "[\"figure\"]",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "db4767b0-dbf7-4702-abd6-7840904f7f1f"
+        }
+      }
+    ],
+    "error": ""
+  }
+]

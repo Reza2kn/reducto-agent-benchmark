@@ -1,0 +1,26 @@
+{
+  "platform": "smolagents/Nemotron Super 120B (Nebius bf16)",
+  "model": "Nemotron Super 120B (Nebius bf16)",
+  "integration_path": "framework",
+  "capability": "classify",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 4,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 1,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 0.09,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "Error while generating output:\nError code: 404 - {'error': {'message': \"No endpoints found that support the provided 'tool_choice' value. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection\", 'code': 404}}"
+  ],
+  "notes": "smolagents ToolCallingAgent \u2014 Nemotron Super 120B (Nebius bf16). @tool decorator introspects docstrings + type annotations. Eval details: {'correct_category': False, 'has_reasoning': True, 'mentions_fidelity': False}",
+  "total_score": 20,
+  "max_score": 35,
+  "result_key": "smolagents__nemotron_super_120b_nebius_bf16__framework__classify",
+  "raw_output": "[error] Error while generating output:\nError code: 404 - {'error': {'message': \"No endpoints found that support the provided 'tool_choice' value. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection\", 'code': 404}}"
+}

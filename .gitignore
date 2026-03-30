@@ -1,0 +1,30 @@
+# secrets
+.env
+*.env
+
+# large generated data
+benchmark/data/synthetic_training/*.jsonl
+benchmark/data/synthetic_training/.checkpoint.jsonl
+verified_train.jsonl
+verified_val.jsonl
+training.zip
+
+# logs
+/tmp/
+*.log
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# node
+mcp-server/node_modules/
+mcp-server/dist/
+
+# local models
+local-models/
+
+# OS
+.DS_Store

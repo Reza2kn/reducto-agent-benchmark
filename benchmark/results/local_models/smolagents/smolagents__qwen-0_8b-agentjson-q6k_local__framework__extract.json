@@ -1,0 +1,26 @@
+{
+  "platform": "smolagents/Qwen-0.8B-AgentJSON-Q6K (local)",
+  "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+  "integration_path": "framework",
+  "capability": "extract",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 4,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 1,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 492.39,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "Error while generating output:\nError code: 400 - {'error': {'code': 400, 'message': 'request (8684 tokens) exceeds the available context size (8192 tokens), try increasing it', 'type': 'exceed_context_size_error', 'n_prompt_tokens': 8684, 'n_ctx': 8192}}"
+  ],
+  "notes": "smolagents ToolCallingAgent \u2014 Qwen-0.8B-AgentJSON-Q6K (local). @tool decorator introspects docstrings + type annotations. Eval details: {'portfolio_beginning_correct': False, 'portfolio_ending_correct': False, 'account_number_found': False, 'account_type_found': False, 'top_holding_found': False, 'is_structured_json': False}",
+  "total_score": 20,
+  "max_score": 35,
+  "result_key": "smolagents__qwen-0_8b-agentjson-q6k_local__framework__extract",
+  "raw_output": "[error] Error while generating output:\nError code: 400 - {'error': {'code': 400, 'message': 'request (8684 tokens) exceeds the available context size (8192 tokens), try increasing it', 'type': 'exceed_context_size_error', 'n_prompt_tokens': 8684, 'n_ctx': 8192}}"
+}

@@ -1,0 +1,23 @@
+{
+  "platform": "Aider",
+  "model": "gpt-4.1",
+  "integration_path": "python_sdk",
+  "capability": "extract",
+  "discovery": 3,
+  "setup_friction": 4,
+  "integration_complexity": 0,
+  "feature_coverage": 3,
+  "error_recovery": 0,
+  "output_quality": 0,
+  "token_efficiency": 0,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 0.0,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [],
+  "notes": "STUB \u2014 paste the prompt above into `aider --model gpt-4.1 --no-auto-commits` and fill scores after review.",
+  "total_score": 10,
+  "max_score": 15,
+  "result_key": "aider__python_sdk__extract"
+}

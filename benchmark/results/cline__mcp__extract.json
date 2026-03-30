@@ -1,0 +1,23 @@
+{
+  "platform": "Cline",
+  "model": "Configurable (default: claude-sonnet-4-6)",
+  "integration_path": "mcp",
+  "capability": "extract",
+  "discovery": 4,
+  "setup_friction": 3,
+  "integration_complexity": 0,
+  "feature_coverage": 4,
+  "error_recovery": 0,
+  "output_quality": 0,
+  "token_efficiency": 0,
+  "mcp_compatibility": 5,
+  "total_tokens": 0,
+  "wall_time_seconds": 0.0,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [],
+  "notes": "STUB \u2014 paste the prompt above into Cline and fill scores after review. Note whether approval prompts were clearly worded.",
+  "total_score": 16,
+  "max_score": 20,
+  "result_key": "cline__mcp__extract"
+}

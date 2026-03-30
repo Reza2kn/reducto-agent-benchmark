@@ -1,0 +1,26 @@
+{
+  "platform": "LangChain/GPT-OSS 20B via Groq",
+  "model": "GPT-OSS 20B via Groq",
+  "integration_path": "framework",
+  "capability": "classify",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 3,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 1,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 1.52,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "400 Client Error: Bad Request for url: https://platform.reducto.ai/classify"
+  ],
+  "notes": "LangChain ReAct agent \u2014 GPT-OSS 20B via Groq. Provider: openrouter. Eval details: {'correct_category': False, 'has_reasoning': False, 'mentions_fidelity': False}",
+  "total_score": 19,
+  "max_score": 35,
+  "result_key": "langchain__gpt-oss_20b_via_groq__framework__classify",
+  "raw_output": "[error] 400 Client Error: Bad Request for url: https://platform.reducto.ai/classify"
+}

@@ -1,0 +1,456 @@
+[
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://487b1b2d-6f61-4d67-aec1-74f9b62715dd",
+          "optimize_for_latency": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": true,
+          "optimize_for_latency": false,
+          "citations": false,
+          "system_prompt": "Extract all rows of individual stock holdings: common stocks table(s) listing Name, Ticker, Market Value, and % of Portfolio. Ignore other asset classes."
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "filter_blocks": "[\"Table\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "filter_blocks": "[\"Header\",\"Footer\",\"Page Number\"]",
+          "page_range_start": 2,
+          "page_range_end": 3
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "page_range_start": 3,
+          "page_range_end": 3
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "page_range_start": 4,
+          "page_range_end": 12
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": true,
+          "optimize_for_latency": false,
+          "citations": false,
+          "system_prompt": "The financial statement includes multiple tables listing equity holdings under headings like 'US Stocks' and 'International Stocks'. Extract all rows with a valid ticker symbol as individual stock holdings. Do not include mutual funds or cash. For each, output Name, Ticker, Market Value, and Percentage of Portfolio."
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "persist_results": true,
+          "filter_blocks": "[\"Header\",\"Footer\",\"Page Number\"]"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://cbf3bea3-e84e-447a-a24b-904993524484",
+          "array_extract": true,
+          "deep_extract": true,
+          "optimize_for_latency": false,
+          "citations": false,
+          "system_prompt": "Extract all rows corresponding to individual stock holdings (only equities with a ticker symbol) from the parsed tables. Ignore mutual funds, cash, or other asset classes. For each holding, return Name, Ticker, Market Value, and Percentage of Portfolio."
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://2274862b-73b7-475a-8f24-d031e89dbbbd",
+          "table_format": "json"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "fc99d724-b351-4b50-bd98-1bc0607a76c5"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "162438f0-fd7a-40df-b487-a084b0e19af5"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "162438f0-fd7a-40df-b487-a084b0e19af5"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\":\"Cover Page\",\"description\":\"The cover page of the document.\"},{\"name\":\"Account Summary\",\"description\":\"The section summarizing account details.\"},{\"name\":\"Holdings\",\"description\":\"The section listing account holdings.\"},{\"name\":\"Income Summary\",\"description\":\"The section summarizing account income.\"}]",
+          "split_rules": "If a section boundary falls in the middle of a table, extend the section to include the complete table \u2014 never split a table across sections.",
+          "table_cutoff": "preserve"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "ocr",
+          "table_format": "json",
+          "chunk_mode": "disabled"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\":\"invoice\",\"criteria\":\"Document requests payment and lists billing details, invoice number, invoice date, billing address, line items with descriptions, unit price, quantity, line totals, subtotal, taxes, total due, due date and remittance information.\"},{\"category\":\"purchase order\",\"criteria\":\"Document initiates purchase of goods or services, includes purchase order number, order date, vendor and shipping addresses, billing address, line items with quantities, item codes, unit price, extended price, total order value, and terms of purchase.\"},{\"category\":\"financial statement\",\"criteria\":\"Document summarizes financial position or performance, includes sections such as balance sheet, income statement, or cash flow statement, with account categories, dates, amounts, totals of assets, liabilities, equity, revenues, expenses, and other financial metrics.\"}]",
+          "document_metadata": "accounts payable automation pipeline"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\":\"invoice\",\"criteria\":[\"Document requests payment and lists billing details, invoice number, invoice date, billing address, line items with descriptions, unit price, quantity, line totals, subtotal, taxes, total due, due date and remittance information.\"]},{\"category\":\"purchase order\",\"criteria\":[\"Document initiates purchase of goods or services, includes purchase order number, order date, vendor and shipping addresses, billing address, line items with quantities, item codes, unit price, extended price, total order value, and terms of purchase.\"]},{\"category\":\"financial statement\",\"criteria\":[\"Document summarizes financial position or performance, includes sections such as balance sheet, income statement, or cash flow statement, with account categories, dates, amounts, totals of assets, liabilities, equity, revenues, expenses, and other financial metrics.\"]}]",
+          "document_metadata": "accounts payable automation pipeline"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "document_url": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": [
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+          ],
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "document_url": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "document_url": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "html",
+          "chunk_mode": "section",
+          "chunk_size": 500,
+          "persist_results": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true,
+          "return_images_types": "[\"figure\"]"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "e5c9efac-8834-4b02-af6f-a6c3056e14a4"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "e5c9efac-8834-4b02-af6f-a6c3056e14a4"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "e5c9efac-8834-4b02-af6f-a6c3056e14a4"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "e5c9efac-8834-4b02-af6f-a6c3056e14a4"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "e5c9efac-8834-4b02-af6f-a6c3056e14a4"
+        }
+      }
+    ],
+    "error": ""
+  }
+]

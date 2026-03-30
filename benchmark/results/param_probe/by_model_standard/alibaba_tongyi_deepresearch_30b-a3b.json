@@ -1,0 +1,241 @@
+[
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": ""
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": ""
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "agentic_scopes": [
+            "table"
+          ],
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "agentic_scopes": "[\"table\"]",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://3a527c3c-c4e2-4621-8080-56ce51e3416b",
+          "array_extract": true,
+          "deep_extract": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'alibaba/tongyi-deepresearch-30b-a3b is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'AtlasCloud', 'is_byok': False}}, 'user_id': 'user_2eSeQxNwa66fMZ5zUVuCIqiTKgw'}"
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'alibaba/tongyi-deepresearch-30b-a3b is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'AtlasCloud', 'is_byok': False}}, 'user_id': 'user_2eSeQxNwa66fMZ5zUVuCIqiTKgw'}"
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "ocr"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://268d3081-9b96-4b66-b653-1cb927040b7c",
+          "array_extract": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://268d3081-9b96-4b66-b653-1cb927040b7c",
+          "array_extract": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"invoice\", \"criteria\": \"Expected to be an invoice in the accounts payable automation pipeline\"}, {\"category\": \"purchase order\", \"criteria\": \"Expected to be a purchase order document\"}, {\"category\": \"financial statement\", \"criteria\": \"Expected to be a financial statement document\"}]",
+          "document_metadata": "Accounts payable automation pipeline context provided for classification"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"invoice\", \"criteria\": [\"Expected to be an invoice in the accounts payable automation pipeline\"]}, {\"category\": \"purchase order\", \"criteria\": [\"Expected to be a purchase order document in the accounts payable workflow\"]}, {\"category\": \"financial statement\", \"criteria\": [\"Expected to be a financial statement document for accounting purposes\"]}]",
+          "document_metadata": "{\"pipeline_context\": \"accounts_payable_automation\"}"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": [
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+          ],
+          "agentic_scopes": [
+            "table"
+          ],
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "agentic_scopes": "[\"table\"]",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "agentic_scopes": [
+            "table"
+          ],
+          "persist_results": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Alibaba Tongyi DeepResearch 30B-A3B",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://64c84cc3-a368-4b01-8df8-312b4c7afc40",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true
+        }
+      }
+    ],
+    "error": ""
+  }
+]

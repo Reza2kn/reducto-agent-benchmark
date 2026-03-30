@@ -1,0 +1,112 @@
+[
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  },
+  {
+    "model": "Liquid LFM-2.5 1.2B Thinking (free)",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 404 - {'error': {'message': 'No endpoints found that support tool use. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}"
+  }
+]

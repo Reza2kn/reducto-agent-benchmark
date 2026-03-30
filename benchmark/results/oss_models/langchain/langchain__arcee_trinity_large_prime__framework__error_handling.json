@@ -1,0 +1,26 @@
+{
+  "platform": "LangChain/Arcee Trinity Large (prime)",
+  "model": "Arcee Trinity Large (prime)",
+  "integration_path": "framework",
+  "capability": "error_handling",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 3,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 3,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 10.83,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "400 Client Error: Bad Request for url: https://platform.reducto.ai/parse"
+  ],
+  "notes": "LangChain ReAct agent \u2014 Arcee Trinity Large (prime). Provider: openrouter. Eval details: {'caught_401': False, 'caught_bad_url': True, 'caught_schema_error': True, 'shows_recovery': False}",
+  "total_score": 21,
+  "max_score": 35,
+  "result_key": "langchain__arcee_trinity_large_prime__framework__error_handling",
+  "raw_output": "[error] 400 Client Error: Bad Request for url: https://platform.reducto.ai/parse"
+}

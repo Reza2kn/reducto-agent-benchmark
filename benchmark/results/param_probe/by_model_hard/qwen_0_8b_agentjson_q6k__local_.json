@@ -1,0 +1,3137 @@
+[
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "citations_bbox",
+    "param": "citations=True \u2192 bbox in response",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 1,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "extraction_mode": null,
+          "chunk_mode": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false,
+          "return_figure_images": false,
+          "filter_blocks": null
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "citations_no_chunking",
+    "param": "citations=True must NOT have chunk_mode",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 1,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at page 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at page 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at page 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at page 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at page 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at page 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at page 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": null
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading",
+          "table_cutoff": null
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading",
+          "table_cutoff": null
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split at the beginning of each section heading",
+          "table_cutoff": null
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": null
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "system_prompt_units",
+    "param": "system_prompt for unit conversion",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 1,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": false,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "optimize_latency_not_deep",
+    "param": "optimize_for_latency=True, deep_extract absent",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 400 - {'error': {'code': 400, 'message': 'request (16391 tokens) exceeds the available context size (16384 tokens), try increasing it', 'type': 'exceed_context_size_error', 'n_prompt_tokens': 16391, 'n_ctx': 16384}}",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "include_images_chart",
+    "param": "include_images=True for chart data",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 400 - {'error': {'code': 400, 'message': 'request (16417 tokens) exceeds the available context size (16384 tokens), try increasing it', 'type': 'exceed_context_size_error', 'n_prompt_tokens': 16417, 'n_ctx': 16384}}",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "merge_tables_crosspage",
+    "param": "merge_tables=True",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 1,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "split: false"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "chunk_mode": null,
+          "extraction_mode": null,
+          "agentic_scopes": null,
+          "persist_results": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 3,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "chunk_mode": null,
+          "extraction_mode": null,
+          "agentic_scopes": null,
+          "persist_results": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 3,
+          "embedding_optimized": false
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "filter_blocks_clean",
+    "param": "filter_blocks=['Header','Footer','Page Number']",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "hybrid",
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "hybrid",
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "hybrid",
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "chunk_section_rag",
+    "param": "chunk_mode='section' for semantic RAG",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "merge_tables": null,
+          "persist_results": false,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Title and Introduction\", \"description\": \"Header and introductory text of the report\"}, {\"name\": \"Main Content\", \"description\": \"The main body of the investment report\"}]",
+          "split_rules": "Split the document into two sections: first for the title and introduction, second for the main content of the report."
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Title and Introduction\", \"description\": \"Header and introductory text of the report\"}, {\"name\": \"Main Content\", \"description\": \"The main body of the investment report\"}]",
+          "split_rules": "Split the document into two sections: first for the title and introduction, second for the main content of the report."
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "embedding_optimized_flag",
+    "param": "embedding_optimized=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": "hybrid",
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://e5984dde-b961-4d24-bc37-4a26bd3af39e",
+          "extraction_mode": "hybrid"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "hybrid"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "page_range_cost",
+    "param": "page_range to reduce credit cost",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages 3-7"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages 3-7"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages 3-7"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": null
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": null
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": null
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[]",
+          "split_rules": "pages: [3, 4, 5, 6, 7]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": null,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": null,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 3,
+          "page_range_end": 7,
+          "embedding_optimized": false
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "return_images_array",
+    "param": "return_images=['figure','table']",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 1,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "upload_reuse",
+    "param": "upload \u2192 reducto:// \u2192 reuse across calls",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://9fcf49e1-4c4b-434c-803a-8ff80bc24263",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "reducto://9fcf49e1-4c4b-434c-803a-8ff80bc24263",
+          "categories_json": "[{\"category\": \"quarterly\", \"criteria\": \"Report is a quarterly financial report\"}, {\"category\": \"annual\", \"criteria\": \"Report is an annual financial report\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "reducto://9fcf49e1-4c4b-434c-803a-8ff80bc24263",
+          "categories_json": "[{\"category\": \"quarterly\", \"criteria\": \"Report is a quarterly financial report\"}, {\"category\": \"annual\", \"criteria\": \"Report is an annual financial report\"}]"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "classify_then_route",
+    "param": "classify \u2192 choose schema \u2192 extract",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Request timed out.",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "split_then_extract_section",
+    "param": "split \u2192 use page range \u2192 extract section only",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Portfolio Holdings\", \"description\": \"Section containing portfolio holdings data\"}]",
+          "split_rules": "split only on 'Portfolio Holdings' section"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "edit_basic_fill",
+    "param": "reducto_edit with edit_instructions",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://16b66837-a554-43dc-b415-bb4a8f2398f1",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": null,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": null,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": null
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "reducto://16b66837-a554-43dc-b415-bb4a8f2398f1",
+          "edit_instructions": "Fill in the account holder name to \"Jane Smith\" and the date to \"today\".",
+          "flatten": false
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/sample-pdf.pdf",
+          "edit_instructions": "Fill in the account holder name to \"Jane Smith\" and the date to \"today\".",
+          "flatten": false
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/sample-pdf.pdf",
+          "edit_instructions": "Fill in the account holder name to \"Jane Smith\" and the date to \"today\".",
+          "flatten": false
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/sample-pdf.pdf",
+          "edit_instructions": "Fill in the account holder name to \"Jane Smith\" and the date to \"today\".",
+          "flatten": false
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "edit_form_schema",
+    "param": "form_schema_json with EditWidget objects",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://507af7e2-fa21-492b-a197-b2eff6690880",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://507af7e2-fa21-492b-a197-b2eff6690880",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://507af7e2-fa21-492b-a197-b2eff6690880",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://e6d9e1fa-c975-4ed8-a83d-23c274e12b42",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://12345678-90ab-cdef-1234-567890abcdef",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://example.com/fidelity-example.pdf",
+          "edit_instructions": "Fill the form with: Name='John Smith', Date='2026-03-28', Amount='$45,231.00', Account='X-7842', Signature='approved'",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://12345678-90ab-cdef-1234-567890abcdef",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://example.com/fidelity-example.pdf",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "edit_flatten_lock",
+    "param": "flatten=True to lock filled PDF",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": null,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": null,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": null,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": null,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "reducto://d944ecb1-6e52-49a4-abbb-eca5fd4449db",
+          "edit_instructions": "Fill the recipient name in the document with \"Acme Corp\" and lock the document to prevent modification.",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": null,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": null,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": null,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": null,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1,
+          "embedding_optimized": false
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "empty_result_ocr_retry",
+    "param": "empty parse \u2192 retry with ocr mode",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 1,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://f21b9d2b-c197-4dae-ad9e-2dab9371c48b",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "chunk_mode": null,
+          "embedding_optimized": false,
+          "return_figure_images": false,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://f21b9d2b-c197-4dae-ad9e-2dab9371c48b",
+          "extraction_mode": null,
+          "table_format": null,
+          "agentic_scopes": null,
+          "chunk_mode": null,
+          "embedding_optimized": false,
+          "return_figure_images": false,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "classify_page_limit",
+    "param": "classify page_range max 10 pages",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 1,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\", \"criteria\": {\"type\": \"NDA\"}}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\", \"criteria\": {\"type\": \"NDA\"}}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\", \"criteria\": {\"type\": \"NDA\"}}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\", \"criteria\": {\"type\": \"NDA\"}}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"NDA\"}]"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "jobid_expiry_recovery",
+    "param": "404 on jobid:// \u2192 re-parse original",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": null,
+          "agentic_scopes": null,
+          "extraction_mode": null,
+          "merge_tables": null,
+          "persist_results": true,
+          "chunk_mode": null,
+          "chunk_size": 500,
+          "return_figure_images": false,
+          "return_images_types": null,
+          "filter_blocks": null,
+          "page_range_start": 1,
+          "page_range_end": 1
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "table_cutoff_preserve",
+    "param": "table_cutoff='preserve' in split",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Account Summary\", \"description\": \"Summary of account information\"}, {\"name\": \"Portfolio Holdings\", \"description\": \"List of portfolio holdings\"}, {\"name\": \"Income\", \"description\": \"Income details\"}]"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Account Summary\", \"description\": \"Summary of account information\"}, {\"name\": \"Portfolio Holdings\", \"description\": \"List of portfolio holdings\"}, {\"name\": \"Income\", \"description\": \"Income details\"}]",
+          "split_rules": "Table in 'Account Summary' is complete. No split needed."
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "get_job_poll",
+    "param": "reducto_get_job for async polling",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "parse-job-abc123-def456"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "parse-job-abc123-def456"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  }
+]

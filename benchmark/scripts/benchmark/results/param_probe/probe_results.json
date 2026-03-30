@@ -1,0 +1,13 @@
+[
+  {
+    "model": "OpenAI o4-mini (reasoning=high)",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable"
+  }
+]

@@ -1,0 +1,6262 @@
+[
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\", \"table\", \"figure\"]",
+          "extraction_mode": "hybrid",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://4e2a8a12-b8b3-4d80-8a7a-b98109051b34",
+          "array_extract": false,
+          "deep_extract": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "{'message': 'Provider returned error', 'code': 503}"
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "html",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 400 - {'error': {'message': 'Provider returned error', 'code': 400, 'metadata': {'raw': '{\"object\":\"error\",\"message\":\"Prompt contains 131445 tokens and 0 draft tokens, too large for model with 131072 maximum context length\",\"type\":\"invalid_request_invalid_args\",\"param\":null,\"code\":\"3051\",\"raw_status_code\":400}', 'provider_name': 'Mistral', 'is_byok': False}}, 'user_id': 'user_2eSeQxNwa66fMZ5zUVuCIqiTKgw'}"
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Cover Page\", \"description\": \"The front page of the document.\"}, {\"name\": \"Account Summary\", \"description\": \"Summary of the account including total value and performance.\"}, {\"name\": \"Holdings\", \"description\": \"List of individual investments and their details.\"}, {\"name\": \"Income Summary\", \"description\": \"Summary of income generated from investments.\"}]",
+          "split_rules": "If a section boundary falls in the middle of a table, extend the section to include the complete table \u2014 never split a table across sections."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "ocr"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "ocr",
+          "persist_results": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"invoice\", \"criteria\": \"Document used to request payment for goods or services rendered, typically includes amounts owed, due dates, and vendor information.\"}, {\"category\": \"purchase order\", \"criteria\": \"Document sent from buyer to seller to confirm a purchase, includes itemized list of goods/services, quantities, and pricing.\"}, {\"category\": \"financial statement\", \"criteria\": \"Formal record of financial activities, includes balance sheets, income statements, and cash flow statements.\"}]",
+          "document_metadata": "This document came from our accounts payable automation pipeline and is expected to be one of: invoice, purchase order, or financial statement."
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"invoice\", \"criteria\": [\"Document used to request payment for goods or services rendered\", \"typically includes amounts owed\", \"due dates\", \"vendor information\"]}, {\"category\": \"purchase order\", \"criteria\": [\"Document sent from buyer to seller to confirm a purchase\", \"includes itemized list of goods/services\", \"quantities\", \"pricing\"]}, {\"category\": \"financial statement\", \"criteria\": [\"Formal record of financial activities\", \"includes balance sheets\", \"income statements\", \"cash flow statements\"]}]",
+          "document_metadata": "This document came from our accounts payable automation pipeline and is expected to be one of: invoice, purchase order, or financial statement."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\", \"text\", \"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\", \"text\", \"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\", \"text\", \"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\", \"text\", \"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://ebb41e39-1c1d-45e1-bbdd-64e7127f46fc"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://c0fcb661-e2cd-479c-b62f-da670cc20667"
+        }
+      }
+    ],
+    "error": ""
+  }
+]

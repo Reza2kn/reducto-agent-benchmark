@@ -1,0 +1,26 @@
+{
+  "platform": "smolagents/Codex Mini Latest",
+  "model": "Codex Mini Latest",
+  "integration_path": "framework",
+  "capability": "error_handling",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 4,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 4,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 0.22,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "Error while generating output:\nError code: 404 - {'error': {'message': 'The model `codex-mini-latest` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}"
+  ],
+  "notes": "smolagents ToolCallingAgent \u2014 Codex Mini Latest. @tool decorator introspects docstrings + type annotations. Eval details: {'caught_401': True, 'caught_bad_url': True, 'caught_schema_error': True, 'shows_recovery': False}",
+  "total_score": 23,
+  "max_score": 35,
+  "result_key": "smolagents__codex_mini_latest__framework__error_handling",
+  "raw_output": "[error] Error while generating output:\nError code: 404 - {'error': {'message': 'The model `codex-mini-latest` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}"
+}

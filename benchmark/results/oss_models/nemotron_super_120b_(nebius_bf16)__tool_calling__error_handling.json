@@ -1,0 +1,23 @@
+{
+  "platform": "Nemotron Super 120B (Nebius bf16)",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "integration_path": "tool_calling",
+  "capability": "error_handling",
+  "discovery": 5,
+  "setup_friction": 4,
+  "integration_complexity": 5,
+  "feature_coverage": 3,
+  "error_recovery": 3,
+  "output_quality": 1,
+  "token_efficiency": 0,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 7.2,
+  "tool_calls_count": 1,
+  "lines_of_code": 0,
+  "errors_encountered": [],
+  "notes": " | turns=1 tool_calls=1 | used_tools=yes",
+  "total_score": 21,
+  "max_score": 30,
+  "result_key": "nemotron_super_120b_(nebius_bf16)__tool_calling__error_handling"
+}

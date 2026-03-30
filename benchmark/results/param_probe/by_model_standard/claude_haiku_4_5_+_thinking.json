@@ -1,0 +1,350 @@
+[
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://65001a4c-1c4c-402e-a352-2ddf6280bd86",
+          "citations": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "citations": true
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "0757c04a-438d-46bc-9bd4-620271dc2a9b"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "csv",
+          "agentic_scopes": "[\"table\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "page_range_start": 2,
+          "page_range_end": 3
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "199f53eb-0f72-4081-8de7-86b091f79aa7"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "agentic_scopes": "[\"table\"]",
+          "table_format": "json"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "547a9d15-b00c-4c94-8ac0-f611bd963f09"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "persist_results": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[\n  {\"name\": \"Cover Page\", \"description\": \"The front cover or title page of the document\"},\n  {\"name\": \"Account Summary\", \"description\": \"Summary information about the account\"},\n  {\"name\": \"Holdings\", \"description\": \"List of holdings or investments\"},\n  {\"name\": \"Income Summary\", \"description\": \"Summary of income or distributions\"}\n]",
+          "split_rules": "Never split a table across sections. If a section boundary falls in the middle of a table, extend the section to include the complete table.",
+          "table_cutoff": "preserve"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "ocr"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[\n  {\n    \"category\": \"invoice\",\n    \"criteria\": \"A document requesting payment for goods or services rendered, typically containing vendor details, itemized charges, amounts due, and payment terms\"\n  },\n  {\n    \"category\": \"purchase order\",\n    \"criteria\": \"A document authorizing the purchase of goods or services, typically containing line items, quantities, unit prices, and delivery terms\"\n  },\n  {\n    \"category\": \"financial statement\",\n    \"criteria\": \"A formal financial document such as balance sheet, income statement, cash flow statement, or account statement showing financial position or performance\"\n  }\n]",
+          "document_metadata": "Source: accounts payable automation pipeline. Expected document types: invoice, purchase order, or financial statement."
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[\n  {\n    \"category\": \"invoice\",\n    \"criteria\": [\"document requesting payment\", \"vendor details\", \"itemized charges\", \"amounts due\", \"payment terms\"]\n  },\n  {\n    \"category\": \"purchase order\",\n    \"criteria\": [\"authorizes purchase\", \"line items\", \"quantities\", \"unit prices\", \"delivery terms\"]\n  },\n  {\n    \"category\": \"financial statement\",\n    \"criteria\": [\"balance sheet\", \"income statement\", \"cash flow statement\", \"account statement\", \"financial position\", \"financial performance\"]\n  }\n]",
+          "document_metadata": "Source: accounts payable automation pipeline. Expected document types: invoice, purchase order, or financial statement."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "json",
+          "chunk_mode": "section"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "json",
+          "chunk_mode": "section"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "json",
+          "chunk_mode": "section"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "json",
+          "chunk_mode": "section"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "chunk_mode": "section",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "chunk_mode": "section",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "chunk_mode": "section",
+          "persist_results": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true,
+          "return_images_types": "[\"figure\"]"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "e2936dde-a6e8-4f98-87ce-3ac57caa7d95"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "e2936dde-a6e8-4f98-87ce-3ac57caa7d95"
+        }
+      }
+    ],
+    "error": ""
+  }
+]

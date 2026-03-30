@@ -1,0 +1,26 @@
+{
+  "platform": "LangChain/Codex Mini Latest",
+  "model": "Codex Mini Latest",
+  "integration_path": "framework",
+  "capability": "error_handling",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 3,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 4,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 0.55,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "Error code: 400 - {'error': {'message': \"The requested model 'codex-mini-latest' does not exist.\", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}"
+  ],
+  "notes": "LangChain ReAct agent \u2014 Codex Mini Latest. Provider: openai. Eval details: {'caught_401': True, 'caught_bad_url': True, 'caught_schema_error': True, 'shows_recovery': False}",
+  "total_score": 22,
+  "max_score": 35,
+  "result_key": "langchain__codex_mini_latest__framework__error_handling",
+  "raw_output": "[error] Error code: 400 - {'error': {'message': \"The requested model 'codex-mini-latest' does not exist.\", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}"
+}

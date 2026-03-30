@@ -1,0 +1,604 @@
+[
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://71e2bb78-b2dd-4ff3-bb20-49c78fe3156e",
+          "table_format": "json",
+          "agentic_scopes": [
+            "text",
+            "table"
+          ],
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://71e2bb78-b2dd-4ff3-bb20-49c78fe3156e"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": true,
+          "system_prompt": "Extract each stock holding as a separate entry. Ensure ticker symbols are captured correctly and percentages include the % sign."
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://d15114bc-2141-432f-9a00-7283acf72593",
+          "array_extract": true,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": true,
+          "citations": false,
+          "optimize_for_latency": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": [
+            "table"
+          ],
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://b667f65f-0b2b-4f6e-8dfa-8f25238cc57a",
+          "array_extract": true,
+          "deep_extract": true,
+          "citations": false,
+          "optimize_for_latency": false
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "jobid://b667f65f-0b2b-4f6e-8dfa-8f25238cc57a",
+          "sections_json": [
+            {
+              "name": "Page 1",
+              "description": "First page of the statement"
+            },
+            {
+              "name": "Page 2",
+              "description": "Second page of the statement"
+            },
+            {
+              "name": "Page 3",
+              "description": "Third page of the statement"
+            }
+          ],
+          "split_rules": "Never split a table across sections."
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "jobid://b667f65f-0b2b-4f6e-8dfa-8f25238cc57a",
+          "sections_json": "[{\"name\":\"Page 1\",\"description\":\"First page of the statement\"},{\"name\":\"Page 2\",\"description\":\"Second page of the statement\"},{\"name\":\"Page 3\",\"description\":\"Third page of the statement\"}]",
+          "split_rules": "Never split a table across sections."
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "ocr",
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": [
+            "table"
+          ],
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "variable",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "variable",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://7f20dcde-d82d-4af8-a838-9f8a4851e899",
+          "array_extract": true,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": true,
+          "system_prompt": "Extract all tables from the document, preserving row order and column values."
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://7f20dcde-d82d-4af8-a838-9f8a4851e899",
+          "array_extract": true,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": true,
+          "system_prompt": "Extract all tables from the document, preserving row order and column values."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "agentic_scopes": [
+            "table"
+          ],
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "disabled",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "agentic_scopes": "[\"table\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://c3991c3f-08bc-4029-be8e-64e571cf183b",
+          "table_format": "jsonbbox",
+          "agentic_scopes": "[\"table\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "agentic_scopes": "[\"table\"]",
+          "chunk_mode": "page"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": true,
+          "citations": true,
+          "optimize_for_latency": false
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "optimize_for_latency": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://be2de78a-be90-46a5-80ec-2334494e9522",
+          "array_extract": true
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Page 1\", \"description\": \"Page 1 of the document\"}, {\"name\": \"Page 2\", \"description\": \"Page 2 of the document\"}, {\"name\": \"Page 3\", \"description\": \"Page 3 of the document\"}]",
+          "split_rules": "Never split a table across sections.",
+          "table_cutoff": "preserve"
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Page 1\", \"description\": \"\"}, {\"name\": \"Page 2\", \"description\": \"\"}, {\"name\": \"Page 3\", \"description\": \"\"}]",
+          "split_rules": "Assign pages 1 to Section Page 1, page 2 to Section Page 2, page 3 to Section Page 3."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\":\"Cover Page\",\"description\":\"The first page containing the report title and date.\"},{\"name\":\"Account Summary\",\"description\":\"Page(s) summarizing account details, balances, and performance.\"},{\"name\":\"Holdings\",\"description\":\"Page(s) listing the holdings table with securities, quantities, values.\"},{\"name\":\"Income Summary\",\"description\":\"Page(s) summarizing income, dividends, and interest.\"}]",
+          "split_rules": "Never split a table across sections. If a section boundary falls within a table, extend the preceding section to include the entire table."
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\":\"Cover Page\",\"description\":\"The first page containing the report title and date.\"},{\"name\":\"Account Summary\",\"description\":\"Page(s) summarizing account details, balances, and performance.\"},{\"name\":\"Holdings\",\"description\":\"Page(s) listing the holdings table with securities, quantities, values.\"},{\"name\":\"Income Summary\",\"description\":\"Page(s) summarizing income, dividends, and interest.\"}]",
+          "split_rules": "Never split a table across sections. If a section boundary falls within a table, extend the preceding section to include the entire table.",
+          "table_cutoff": "preserve"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": [
+            "table"
+          ],
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\":\"Cover Page\",\"description\":\"The first page containing the report title and date.\"},{\"name\":\"Account Summary\",\"description\":\"Page(s) summarizing account details, balances, and performance.\"},{\"name\":\"Holdings\",\"description\":\"Page(s) listing the holdings table with securities, quantities, values.\"},{\"name\":\"Income Summary\",\"description\":\"Page(s) summarizing income, dividends, and interest.\"}]",
+          "split_rules": "Never split a table across sections. If a page contains both a holdings table and income summary, assign the holdings table to the Holdings section and the remaining content to the Income Summary section.",
+          "table_cutoff": "preserve"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "ocr",
+          "persist_results": true,
+          "chunk_mode": "disabled",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"Invoice\", \"criteria\": \"Document contains vendor name, invoice number, date, line items, total amount due, and payment terms.\"}, {\"category\": \"Purchase Order\", \"criteria\": \"Document includes PO number, buyer and supplier details, ordered items, quantities, unit prices, and delivery instructions.\"}, {\"category\": \"Financial Statement\", \"criteria\": \"Document presents balance sheet, income statement, cash flow, or other financial summary for a company.\"}]",
+          "document_metadata": "Source: accounts payable automation pipeline; Expected types: invoice, purchase order, financial statement."
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": [
+            {
+              "category": "Invoice",
+              "criteria": [
+                "vendor name",
+                "invoice number",
+                "date",
+                "line items",
+                "total amount due",
+                "payment terms"
+              ]
+            },
+            {
+              "category": "Purchase Order",
+              "criteria": [
+                "PO number",
+                "buyer details",
+                "supplier details",
+                "ordered items",
+                "quantities",
+                "unit prices",
+                "delivery instructions"
+              ]
+            },
+            {
+              "category": "Financial Statement",
+              "criteria": [
+                "balance sheet",
+                "income statement",
+                "cash flow",
+                "financial summary"
+              ]
+            }
+          ],
+          "document_metadata": "Source: accounts payable automation pipeline; Expected types: invoice, purchase order, financial statement."
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\":\"Invoice\",\"criteria\":[\"vendor name\",\"invoice number\",\"date\",\"line items\",\"total amount due\",\"payment terms\"]},{\"category\":\"Purchase Order\",\"criteria\":[\"PO number\",\"buyer details\",\"supplier details\",\"ordered items\",\"quantities\",\"unit prices\",\"delivery instructions\"]},{\"category\":\"Financial Statement\",\"criteria\":[\"balance sheet\",\"income statement\",\"cash flow\",\"financial summary\"]}]",
+          "document_metadata": "Source: accounts payable automation pipeline; Expected types: invoice, purchase order, financial statement."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": [
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+            "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+          ],
+          "table_format": "json",
+          "agentic_scopes": [
+            "text",
+            "table",
+            "figure"
+          ],
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Inception Mercury 2",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://541b7e67-311f-4b70-ad63-36c85866b6ed",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true,
+          "chunk_mode": "disabled"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true,
+          "table_format": "json"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": true,
+          "extraction_mode": "ocr"
+        }
+      }
+    ],
+    "error": ""
+  }
+]

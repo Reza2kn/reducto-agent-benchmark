@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgentReducto</title>
+  <meta name="description" content="A fine-tuned model that knows the Reducto API natively — benchmark, demo, and tooling." />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080a0f;
+      --blob-1: #1a1d26;
+      --blob-2: #15181f;
+      --blob-3: #181b24;
+      --metal-hi: rgba(255,255,255,0.18);
+      --metal-lo: rgba(255,255,255,0.03);
+      --accent-1: #6e8cff;  /* benchmark blue */
+      --accent-2: #ff7eb3;  /* demo pink      */
+      --accent-3: #52d9c2;  /* mcp teal       */
+      --text: #e8eaf0;
+      --sub:  #7a7f96;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'SF Pro Display', 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── background noise grain ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      pointer-events: none;
+    }
+
+    /* ── ambient glow blobs ── */
+    .glow { position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.12; pointer-events: none; z-index: 0; }
+    .glow-a { width: 600px; height: 600px; background: var(--accent-1); top: -200px; left: -150px; }
+    .glow-b { width: 500px; height: 500px; background: var(--accent-2); bottom: -150px; right: -100px; }
+    .glow-c { width: 400px; height: 400px; background: var(--accent-3); top: 40%; left: 50%; transform: translate(-50%, -50%); }
+
+    /* ── layout ── */
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 60px 24px;
+      gap: 64px;
+    }
+
+    /* ── wordmark ── */
+    .wordmark {
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .wordmark h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #6b0d6e 0%, #9d17a0 50%, #c44ac7 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .wordmark p {
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      color: var(--sub);
+      max-width: 480px;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── blob grid ── */
+    .blobs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    /* ── single blob card ── */
+    .blob {
+      position: relative;
+      width: 300px;
+      min-height: 340px;
+      border-radius: 28px;
+      padding: 36px 32px 32px;
+      display: flex; flex-direction: column; gap: 18px;
+      text-decoration: none; color: inherit;
+      cursor: pointer;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
+
+      /* base fill */
+      background: var(--blob-bg, var(--blob-1));
+
+      /* metallic border */
+      border: 1px solid rgba(255,255,255,0.08);
+
+      /* inner shadow ring */
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04) inset,
+        0 24px 64px rgba(0,0,0,0.55),
+        0 2px 4px rgba(0,0,0,0.4);
+
+      transition: box-shadow 0.25s ease;
+    }
+
+    /* metallic sheen overlay — moves with tilt via JS */
+    .blob::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: inherit;
+      background: linear-gradient(
+        135deg,
+        var(--metal-hi) 0%,
+        transparent 40%,
+        transparent 60%,
+        var(--metal-lo) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.3s;
+    }
+
+    .blob:hover {
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.10) inset,
+        0 32px 80px rgba(0,0,0,0.65),
+        0 0 40px -10px var(--accent-color, var(--accent-1)),
+        0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    /* accent stripe at top */
+    .blob::after {
+      content: '';
+      position: absolute; top: 0; left: 32px; right: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color, var(--accent-1)), transparent);
+    }
+
+    /* per-blob accent colours */
+    .blob-bench  { --blob-bg: #141720; --accent-color: var(--accent-1); }
+    .blob-demo   { --blob-bg: #17131d; --accent-color: var(--accent-2); }
+    .blob-mcp    { --blob-bg: #101a19; --accent-color: var(--accent-3); }
+
+    /* ── blob internals ── */
+    .blob-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      transform: translateZ(24px);   /* pop toward viewer in tilt */
+    }
+
+    .blob-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-color, var(--accent-1));
+      transform: translateZ(20px);
+    }
+
+    .blob-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      transform: translateZ(22px);
+    }
+
+    .blob-desc {
+      font-size: 0.88rem;
+      color: var(--sub);
+      line-height: 1.65;
+      flex: 1;
+      transform: translateZ(18px);
+    }
+
+    .blob-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--accent-color, var(--accent-1));
+      letter-spacing: 0.02em;
+      transform: translateZ(24px);
+      transition: gap 0.2s;
+    }
+    .blob:hover .blob-cta { gap: 10px; }
+
+    /* ── footer ── */
+    footer {
+      font-size: 0.78rem;
+      color: var(--sub);
+      opacity: 0.55;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 680px) {
+      .blob { width: 100%; max-width: 360px; }
+      .blobs { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ambient glows -->
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="glow glow-c"></div>
+
+  <main class="page">
+
+    <!-- wordmark -->
+    <header class="wordmark">
+      <h1>AgentReducto</h1>
+      <p>a benchmark suite and a family of fine-tuned models specializing in the Reducto API.</p>
+    </header>
+
+    <!-- blob grid -->
+    <section class="blobs">
+
+      <!-- 1 · Benchmark -->
+      <a class="blob blob-bench tilt-card"
+         href="https://benchmark.agentreducto.com"
+         target="_blank" rel="noopener">
+        <div class="blob-icon">📊</div>
+        <div class="blob-label">Benchmark</div>
+        <div class="blob-title">Agent Platform<br>Comparison</div>
+        <div class="blob-desc">
+          How well do Claude Code, Cursor, Codex, Gemini CLI, and Cline actually use the Reducto API? Six dimensions, scored across five platforms.
+        </div>
+        <div class="blob-cta">View results →</div>
+      </a>
+
+      <!-- 2 · Live Demo -->
+      <a class="blob blob-demo tilt-card"
+         href="https://huggingface.co/spaces/Reza2kn/agentreducto-demo"
+         target="_blank" rel="noopener">
+        <div class="blob-icon">🤗</div>
+        <div class="blob-label">Live Demo</div>
+        <div class="blob-title">Try the Model<br>in Your Browser</div>
+        <div class="blob-desc">
+          The quantized 0.8B model running in-browser via WebGPU. Throw hard multi-hop document tasks at it — extract, split, classify, chain.
+        </div>
+        <div class="blob-cta">Open demo →</div>
+      </a>
+
+      <!-- 3 · MCP Server -->
+      <a class="blob blob-mcp tilt-card"
+         href="https://github.com/Reza2kn/reducto-agent-benchmark/tree/main/mcp-server"
+         target="_blank" rel="noopener">
+        <div class="blob-icon">🔌</div>
+        <div class="blob-label">MCP Server</div>
+        <div class="blob-title">Reducto for<br>Claude & Cursor</div>
+        <div class="blob-desc">
+          Drop-in MCP server exposing all six Reducto endpoints — parse, extract, split, edit, classify, upload — to any MCP-compatible agent.
+        </div>
+        <div class="blob-cta">Get the server →</div>
+      </a>
+
+    </section>
+
+    <footer>built by Reza Sayar · agentreducto.com</footer>
+
+  </main>
+
+  <script>
+    // VanillaTilt on all blob cards
+    VanillaTilt.init(document.querySelectorAll('.tilt-card'), {
+      max:          6,
+      speed:        600,
+      glare:        true,
+      'max-glare':  0.10,
+      scale:        1.025,
+      perspective:  900,
+      gyroscope:    true,
+    });
+
+    // Animate ambient glows slowly
+    const glows = document.querySelectorAll('.glow');
+    glows.forEach((g, i) => {
+      const duration = 18000 + i * 7000;
+      const xRange = 40, yRange = 40;
+      let t = i * (Math.PI * 2 / glows.length);
+      const tick = () => {
+        t += 0.0004;
+        const dx = Math.sin(t) * xRange;
+        const dy = Math.cos(t * 0.7) * yRange;
+        g.style.transform = `translate(${dx}px, ${dy}px)`;
+        requestAnimationFrame(tick);
+      };
+      tick();
+    });
+  </script>
+</body>
+</html>

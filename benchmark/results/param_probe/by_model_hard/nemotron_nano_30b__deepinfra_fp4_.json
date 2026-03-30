@@ -1,0 +1,156 @@
+[
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "citations_bbox",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "citations_no_chunking",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "system_prompt_units",
+    "score": 1,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "optimize_latency_not_deep",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "include_images_chart",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "merge_tables_crosspage",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "filter_blocks_clean",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "chunk_section_rag",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "embedding_optimized_flag",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "page_range_cost",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "return_images_array",
+    "score": 0,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "upload_reuse",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "classify_then_route",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "split_then_extract_section",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "edit_basic_fill",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "edit_form_schema",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "edit_flatten_lock",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "empty_result_ocr_retry",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "classify_page_limit",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "jobid_expiry_recovery",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "table_cutoff_preserve",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Nemotron Nano 30B (DeepInfra fp4)",
+    "probe_id": "get_job_poll",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  }
+]

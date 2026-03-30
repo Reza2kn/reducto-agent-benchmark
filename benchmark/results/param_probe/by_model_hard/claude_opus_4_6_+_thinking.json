@@ -1,0 +1,164 @@
+[
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "citations_bbox",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "citations_no_chunking",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "GLM-4.6 (Novita bf16)",
+    "probe_id": "system_prompt_units",
+    "param": "system_prompt for unit conversion",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [],
+    "error": "Error code: 402 - {'error': {'message': 'Insufficient credits. Add more using https://openrouter.ai/settings/credits', 'code': 402}}"
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "optimize_latency_not_deep",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "include_images_chart",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "GLM-4.6 (Novita bf16)",
+    "probe_id": "merge_tables_crosspage",
+    "param": "merge_tables=True",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "Error code: 402 - {'error': {'message': 'Insufficient credits. Add more using https://openrouter.ai/settings/credits', 'code': 402}}"
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "filter_blocks_clean",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "chunk_section_rag",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "embedding_optimized_flag",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "page_range_cost",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "return_images_array",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "upload_reuse",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "classify_then_route",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "split_then_extract_section",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "edit_basic_fill",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "edit_form_schema",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "edit_flatten_lock",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "empty_result_ocr_retry",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "classify_page_limit",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "jobid_expiry_recovery",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "table_cutoff_preserve",
+    "score": 3,
+    "credit_error": false,
+    "error": ""
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "get_job_poll",
+    "score": 2,
+    "credit_error": false,
+    "error": ""
+  }
+]

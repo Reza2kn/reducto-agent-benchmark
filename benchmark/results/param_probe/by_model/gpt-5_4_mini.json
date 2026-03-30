@@ -1,0 +1,386 @@
+[
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f82f8131-fc58-42af-94fa-373b9b1bd903",
+          "array_extract": true,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": true,
+          "system_prompt": "Extract the primary account on the statement. If only one account is present, return one item. Use numeric values without currency symbols or commas."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://e12c127d-e83c-47dc-ba30-b907b106cb79",
+          "array_extract": true,
+          "deep_extract": true,
+          "citations": false,
+          "optimize_for_latency": false,
+          "system_prompt": "Extract every individual stock holding shown in the investment holdings section. Return one row per holding. Use the exact ticker symbol if present. If the document includes funds or cash, include only stock holdings unless the user explicitly asks otherwise. Market value and percentage of portfolio should be taken from the holdings table."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://648e767b-70f2-4b97-8302-dd4df5a0c4d1",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": true,
+          "system_prompt": "Extract only the account number and ending portfolio value for each account. Use the ending portfolio value exactly as shown on the document, including currency symbols and commas if present."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "disabled",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\":\"Cover Page\",\"description\":\"The first page or pages containing the report cover, account holders, statement title, period dates, and any introductory summary before the account summary begins.\"},{\"name\":\"Account Summary\",\"description\":\"Pages/section containing balances, asset allocation, account value summary, performance summary, and other high-level summary tables before detailed holdings start.\"},{\"name\":\"Holdings\",\"description\":\"Pages/section containing detailed positions/holdings tables, security lists, market values, cost basis, quantity, and similar line-item account holdings.\"},{\"name\":\"Income Summary\",\"description\":\"Pages/section containing income/dividend/interest summaries, distributions, and related income tables or summaries.\"}]",
+          "split_rules": "If a section boundary would fall inside a table, extend the earlier section through the end of the complete table and begin the next section after the table ends. Never split a table across sections. If a section is missing, return it empty rather than merging it with adjacent sections.",
+          "table_cutoff": "preserve"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "ocr",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://ebb720cf-48ef-4502-96bc-ee481892a132",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "ocr",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "page",
+          "return_figure_images": true
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\":\"invoice\",\"criteria\":\"Document from accounts payable automation pipeline; typically requests payment for goods/services, includes invoice number, bill-to/ship-to, line items, tax, total due, payment terms, remittance details.\"},{\"category\":\"purchase order\",\"criteria\":\"Document authorizes procurement or order placement; includes PO number, vendor/supplier, buyer, ship-to, ordered items/quantities, pricing, and does not primarily request payment.\"},{\"category\":\"financial statement\",\"criteria\":\"Formal financial report such as balance sheet, income statement, cash flow statement, or brokerage/portfolio statement; summarizes financial position/performance rather than a bill or order.\"}]",
+          "document_metadata": "Source: accounts payable automation pipeline. Expected document type is one of: invoice, purchase order, financial statement."
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\":\"invoice\",\"criteria\":[\"Document from accounts payable automation pipeline\",\"Typically requests payment for goods/services\",\"Includes invoice number, bill-to/ship-to, line items, tax, total due, payment terms, remittance details\"]},{\"category\":\"purchase order\",\"criteria\":[\"Document authorizes procurement or order placement\",\"Includes PO number, vendor/supplier, buyer, ship-to, ordered items/quantities, pricing\",\"Does not primarily request payment\"]},{\"category\":\"financial statement\",\"criteria\":[\"Formal financial report such as balance sheet, income statement, cash flow statement, or brokerage/portfolio statement\",\"Summarizes financial position/performance rather than a bill or order\"]}]",
+          "document_metadata": "Source: accounts payable automation pipeline. Expected document type is one of: invoice, purchase order, financial statement."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": false,
+          "persist_results": true,
+          "chunk_mode": "disabled",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://fc7ad5be-4b89-4cb5-85b8-6e35a76dfcf9",
+          "table_format": "md",
+          "agentic_scopes": "[\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": false,
+          "persist_results": false,
+          "chunk_mode": "disabled",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://fc7ad5be-4b89-4cb5-85b8-6e35a76dfcf9",
+          "array_extract": false,
+          "deep_extract": true,
+          "citations": false,
+          "optimize_for_latency": false,
+          "system_prompt": "Return all chart/graph figure image URLs from the document. Do not return text descriptions unless needed for caption. If multiple figure images exist, include one entry per figure."
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": false,
+          "persist_results": true,
+          "chunk_mode": "disabled",
+          "return_figure_images": true
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://9f39ec34-e2cf-4985-ac3b-6c3297be55b7",
+          "table_format": "json",
+          "agentic_scopes": "[\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": false,
+          "persist_results": false,
+          "chunk_mode": "disabled",
+          "return_figure_images": true
+        }
+      }
+    ],
+    "error": ""
+  }
+]

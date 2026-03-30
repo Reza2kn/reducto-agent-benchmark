@@ -1,0 +1,26 @@
+{
+  "platform": "LlamaIndex/GPT-OSS 20B via Groq",
+  "model": "GPT-OSS 20B via Groq",
+  "integration_path": "framework",
+  "capability": "parse",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 4,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 1,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 360.03,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "Operation timed out after 360.0 seconds. Currently active steps: run_agent_step"
+  ],
+  "notes": "LlamaIndex ReActAgent \u2014 GPT-OSS 20B via Groq. FunctionTool.from_defaults introspects type annotations automatically. Eval details: {'has_portfolio_value': False, 'has_table_content': False, 'has_account_info': False, 'has_holdings': False, 'has_markdown_structure': False, 'table_count_mentioned': True}",
+  "total_score": 20,
+  "max_score": 35,
+  "result_key": "llamaindex__gpt-oss_20b_via_groq__framework__parse",
+  "raw_output": "[error] Operation timed out after 360.0 seconds. Currently active steps: run_agent_step"
+}

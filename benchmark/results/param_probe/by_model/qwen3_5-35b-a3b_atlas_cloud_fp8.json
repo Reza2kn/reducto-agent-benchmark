@@ -1,0 +1,801 @@
+[
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://b5b9290d-b3d2-432c-90a1-75897c9b7533"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://b5b9290d-b3d2-432c-90a1-75897c9b7533"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": "True",
+          "deep_extract": "True"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": "True",
+          "deep_extract": "True"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "extraction_mode": "ocr"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "extraction_mode": "hybrid"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "chunk_mode": "section"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "page_range_start": "1",
+          "page_range_end": "3"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "reducto://9bc47ede-ef16-4950-8dec-fad696415950",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "chunk_mode": "disabled"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "chunk_mode": "disabled",
+          "filter_blocks": "[\"Header\", \"Footer\", \"Page Number\", \"Title\", \"Section Header\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "chunk_mode": "disabled",
+          "filter_blocks": "[\"Header\", \"Footer\", \"Page Number\", \"Title\", \"Section Header\"]",
+          "return_figure_images": "True"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "chunk_mode": "disabled",
+          "filter_blocks": "[\"Header\", \"Footer\", \"Page Number\", \"Title\", \"Section Header\"]",
+          "return_figure_images": "True",
+          "return_images_types": "[\"figure\", \"table\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "chunk_mode": "disabled",
+          "filter_blocks": "[\"Header\", \"Footer\", \"Page Number\", \"Title\", \"Section Header\"]",
+          "return_figure_images": "True",
+          "return_images_types": "[\"figure\", \"table\"]",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "d86ff0fa-4696-4b24-8857-559e449ea1ba"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "citations": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "e66ccf24-accf-4ccf-b545-a6496ca8dfd6"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "optimize_for_latency": "False"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "ecbc6af4-3123-49cb-b53d-06a8ab4cb69c"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "1d8ad7d9-6d68-4a78-97d2-774f692b0b01"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "c2afbc9b-d2c1-42c7-bb00-2235f73ea131"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract all individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "1c5ceb8b-fc9c-49d0-b86d-2676875547bc"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "c1154268-2f94-4c24-8270-7ee7a49f73b8"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "57b46b1f-2b99-40af-8345-2fe4d5b49a41"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "df3d3a35-0e2f-4374-9008-74e5f027536c"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "b0179e73-258d-4faf-a4b3-1c51eb59de2d"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "9ee70f96-fe5c-41e1-af4c-e77666510611"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "1f556da4-d2a3-41db-82ac-4baadaec7fa1"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "f3f7a604-8a3c-44d4-98fb-cc3838f15cab"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "18385a86-84dd-4723-ab4d-a9c091352203"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "b41d9fcf-74c4-415a-a172-f24a6afe4f13"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "dfc3d6d8-1565-4dea-b045-a8a9063727ab"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "6451ad3f-6722-432d-b8ce-cea0c1ba1955"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://f4984fa2-b91c-4cfb-b439-fb951d65ba47",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "chunk_mode": "disabled",
+          "filter_blocks": "[\"Header\", \"Footer\", \"Page Number\", \"Title\", \"Section Header\"]",
+          "return_figure_images": "True",
+          "return_images_types": "[\"figure\", \"table\"]",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://20db29f8-d053-4abb-acdd-c197953ecf46",
+          "array_extract": "True",
+          "deep_extract": "True",
+          "include_images": "True",
+          "optimize_for_latency": "False",
+          "system_prompt": "Extract ALL individual stock holdings from the Top Holdings table. Each holding should have: name (full name), ticker_symbol (if available, otherwise empty string), market_value (exact dollar amount), and percentage_of_portfolio (exact percentage). Include all rows from the table, even if ticker is missing. Do not truncate the list. Return the complete list of holdings."
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "dbf2642f-0d28-494b-93d4-64eec40fc1da"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "agentic_scopes": "[\"table\"]"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": "True"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "cc51c4db-e10e-4eb0-93f1-fe015d624149"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "cc51c4db-e10e-4eb0-93f1-fe015d624149"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "9a230287-4af0-44ad-8aac-b64f9e617b2e"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "9a230287-4af0-44ad-8aac-b64f9e617b2e"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://9a230287-4af0-44ad-8aac-b64f9e617b2e",
+          "table_format": "jsonbbox"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "ca339dd6-b18d-42df-acd0-be1e0a490352"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://ca339dd6-b18d-42df-acd0-be1e0a490352",
+          "table_format": "jsonbbox"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "1deaaa69-8377-4c6f-b818-e75982ce529b"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "1deaaa69-8377-4c6f-b818-e75982ce529b"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "1deaaa69-8377-4c6f-b818-e75982ce529b"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "1deaaa69-8377-4c6f-b818-e75982ce529b"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "persist_results": "True"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "1215eb99-8f91-4894-a533-14a6743d4812"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Cover Page\", \"description\": \"The cover page of the document\"}, {\"name\": \"Account Summary\", \"description\": \"Account summary section\"}, {\"name\": \"Holdings\", \"description\": \"Holdings section\"}, {\"name\": \"Income Summary\", \"description\": \"Income summary section\"}]",
+          "split_rules": "never split a table across sections - if a section boundary falls in the middle of a table, extend the section to include the complete table",
+          "table_cutoff": "preserve"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "extraction_mode": "ocr"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"invoice\", \"criteria\": \"Document requesting payment for goods or services, typically includes vendor information, line items, amounts due, and payment terms\"}, {\"category\": \"purchase order\", \"criteria\": \"Document issued by a buyer to a seller authorizing a purchase, typically includes order number, items to be purchased, quantities, prices, and delivery information\"}, {\"category\": \"financial statement\", \"criteria\": \"Document showing financial position or performance of an organization, such as balance sheet, income statement, or cash flow statement\"}]",
+          "document_metadata": "Document from accounts payable automation pipeline, expected to be invoice, purchase order, or financial statement"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\": \"invoice\", \"criteria\": [\"Document requesting payment for goods or services\", \"typically includes vendor information\", \"line items\", \"amounts due\", \"and payment terms\"]}, {\"category\": \"purchase order\", \"criteria\": [\"Document issued by a buyer to a seller authorizing a purchase\", \"typically includes order number\", \"items to be purchased\", \"quantities\", \"prices\", \"and delivery information\"]}, {\"category\": \"financial statement\", \"criteria\": [\"Document showing financial position or performance of an organization\", \"such as balance sheet\", \"income statement\", \"or cash flow statement\"]}]",
+          "document_metadata": "Document from accounts payable automation pipeline, expected to be invoice, purchase order, or financial statement"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\", \"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": "True",
+          "return_images_types": "[\"figure\"]"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "9479591c-2ccd-4e8c-8ba1-e226a86c95e0"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://9479591c-2ccd-4e8c-8ba1-e226a86c95e0",
+          "return_figure_images": "True",
+          "return_images_types": "[\"figure\"]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_figure_images": "True",
+          "return_images_types": "[\"figure\"]"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "64d186cc-b861-4011-956a-cd87a3b557b1"
+        }
+      }
+    ],
+    "error": ""
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "platform": "LangChain/Nemotron Nano 30B (DeepInfra fp4)",
+  "model": "Nemotron Nano 30B (DeepInfra fp4)",
+  "integration_path": "framework",
+  "capability": "classify",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 3,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 1,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 41.44,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "500 Server Error: Internal Server Error for url: https://platform.reducto.ai/classify"
+  ],
+  "notes": "LangChain ReAct agent \u2014 Nemotron Nano 30B (DeepInfra fp4). Provider: openrouter. Eval details: {'correct_category': False, 'has_reasoning': False, 'mentions_fidelity': False}",
+  "total_score": 19,
+  "max_score": 35,
+  "result_key": "langchain__nemotron_nano_30b_deepinfra_fp4__framework__classify",
+  "raw_output": "[error] 500 Server Error: Internal Server Error for url: https://platform.reducto.ai/classify"
+}

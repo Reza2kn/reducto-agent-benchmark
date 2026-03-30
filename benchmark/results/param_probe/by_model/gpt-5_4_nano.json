@@ -1,0 +1,421 @@
+[
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "jobid_chaining",
+    "param": "persist_results + jobid://",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"text\",\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": true,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://6e2d5075-e406-46a3-b905-f0056950550e",
+          "array_extract": false,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": true,
+          "system_prompt": "Extract the account number/envelope identifier exactly as displayed. For portfolio values, use the table row labeled Beginning Portfolio Value and Ending Portfolio Value under This Period. If multiple, prefer the values corresponding to the statement period."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "array_extract",
+    "param": "array_extract=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": false,
+          "system_prompt": "Extract ALL individual rows under the holdings/positions table. Include both stocks and ETFs/mutual funds if listed. Use the market value and portfolio percentage columns. If ticker is not shown, return an empty string. Convert percentages to numbers (e.g., 4.56). Convert market value to numeric value (e.g., 1234.56)."
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://e978-4a33-b74c-c931e8ef1b37",
+          "array_extract": true,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": false,
+          "system_prompt": "Return the complete holdings list; if a holding spans multiple lines, merge them. Ensure each row is an individual holding."
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true,
+          "deep_extract": true,
+          "citations": false,
+          "optimize_for_latency": false,
+          "system_prompt": "Find the positions/holdings table. Extract every row as an individual holding. Use columns for Market Value and Portfolio %. Ticker may be absent for some fixed income; if absent set ticker to empty string. Ensure values are numeric (no $ or commas). Percentages should be numeric (e.g., 4.56)."
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://931c2236-1dcc-4b20-afd3-d0f2bced2835",
+          "array_extract": true,
+          "deep_extract": true,
+          "citations": false,
+          "optimize_for_latency": false,
+          "system_prompt": "Return all holdings found; ensure complete list with no truncation."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "agentic_scopes",
+    "param": "agentic_scopes=['table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://6b760355-b577-45da-9b85-41ce0d032b9b",
+          "table_format": "md",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": false,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "json",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "deep_extract_off",
+    "param": "deep_extract absent/False",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": false,
+          "deep_extract": false,
+          "citations": false,
+          "optimize_for_latency": true,
+          "system_prompt": "Extract only the account number and ending portfolio value. Prefer exact wording/format from the statement. If multiple ending values exist, use the final/most summary 'ending portfolio value' field."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "jsonbbox_format",
+    "param": "table_format='jsonbbox'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": false,
+          "persist_results": false,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://3d4ba308-7f4a-4da0-89ed-8c4aff5e62ec",
+          "table_format": "jsonbbox",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": false,
+          "persist_results": false,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "jsonbbox",
+          "agentic_scopes": "[\"table\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": false,
+          "persist_results": false,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "split_rules",
+    "param": "split_rules (NL constraint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\":\"Cover Page\",\"description\":\"Front page(s) including title, basic report identification, and date.\"},{\"name\":\"Account Summary\",\"description\":\"Summary tables and key account totals (e.g., cash, balances, totals).\"},{\"name\":\"Holdings\",\"description\":\"Holdings/positions tables listing securities and quantities/market values.\"},{\"name\":\"Income Summary\",\"description\":\"Income/cash flow summary tables (e.g., dividends/interest, totals).\"}]",
+          "split_rules": "Use natural document structure. If a requested section boundary would fall in the middle of a table, extend the earlier (or later) section to include the complete table so that no table is split across sections.",
+          "table_cutoff": "preserve"
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "ocr_mode",
+    "param": "extraction_mode='ocr'",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "ocr",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "jobid://b6c8f2f6-cc8d-4c6a-ae9b-1c5c8c7f3f2b",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "ocr",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "page",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "document_metadata",
+    "param": "document_metadata (context hint)",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": false,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\":\"invoice\",\"criteria\":\"Bill/request for payment, includes invoice number, supplier, invoice date, line items, totals, payment terms\"},{\"category\":\"purchase order\",\"criteria\":\"Order issued by buyer to supplier, includes PO number, buyer/supplier, line items, quantities, prices, shipping terms\"},{\"category\":\"financial statement\",\"criteria\":\"Report of financial position/performance/cash flows, includes statements, period covered, summary totals, balance sheet/income statement/cash flow\"}]",
+          "document_metadata": "From accounts payable automation pipeline; expected to classify as invoice, purchase order, or financial statement."
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "categories_json": "[{\"category\":\"invoice\",\"criteria\":\"Bill/request for payment, includes invoice number, supplier, invoice date, line items, totals, payment terms\"},{\"category\":\"purchase order\",\"criteria\":\"Order issued by buyer to supplier, includes PO number, buyer/supplier, line items, quantities, prices, shipping terms\"},{\"category\":\"financial statement\",\"criteria\":\"Report of financial position/performance/cash flows, includes statements, period covered, summary totals, balance sheet/income statement/cash flow\"}]",
+          "document_metadata": "From accounts payable automation pipeline; expected to classify as invoice, purchase order, or financial statement."
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "url_array",
+    "param": "input as JSON array of URLs",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "[\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\",\"https://cdn.reducto.ai/samples/fidelity-example.pdf\"]",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"text\",\"table\",\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": false
+        }
+      }
+    ],
+    "error": ""
+  },
+  {
+    "model": "GPT-5.4 Nano",
+    "probe_id": "return_figure_images",
+    "param": "return_figure_images=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_format": "md",
+          "agentic_scopes": "[\"figure\"]",
+          "extraction_mode": "hybrid",
+          "merge_tables": true,
+          "persist_results": false,
+          "chunk_mode": "section",
+          "return_figure_images": true
+        }
+      }
+    ],
+    "error": ""
+  }
+]

@@ -1,0 +1,561 @@
+app:
+  description: >
+    Reducto document processing benchmark workflow. Uploads a PDF, parses it
+    with persist_results enabled, then runs extract and split in parallel using
+    jobid:// chaining to avoid re-parsing. Outputs a formatted benchmark report.
+  icon: "\U0001F4C4"
+  icon_background: "#E8F4F8"
+  mode: workflow
+  name: Reducto Benchmark Workflow
+  use_icon_as_answer_icon: false
+
+kind: app
+
+version: "0.1.3"
+
+workflow:
+  conversation_variables: []
+
+  environment_variables: []
+
+  features:
+    file_upload:
+      allowed_file_extensions:
+        - .pdf
+      allowed_file_types:
+        - document
+      allowed_file_upload_methods:
+        - remote_url
+      enabled: false
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+          - remote_url
+          - local_file
+      number_limits: 3
+    opening_statement: ""
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ""
+      voice: ""
+
+  graph:
+    edges:
+      - data:
+          isInIteration: false
+          sourceType: start
+          targetType: http-request
+        id: edge-start-to-upload
+        selected: false
+        source: start
+        sourceHandle: source
+        target: http-upload
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+      - data:
+          isInIteration: false
+          sourceType: http-request
+          targetType: http-request
+        id: edge-upload-to-parse
+        selected: false
+        source: http-upload
+        sourceHandle: source
+        target: http-parse
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+      - data:
+          isInIteration: false
+          sourceType: http-request
+          targetType: http-request
+        id: edge-parse-to-extract
+        selected: false
+        source: http-parse
+        sourceHandle: source
+        target: http-extract
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+      - data:
+          isInIteration: false
+          sourceType: http-request
+          targetType: http-request
+        id: edge-parse-to-split
+        selected: false
+        source: http-parse
+        sourceHandle: source
+        target: http-split
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+      - data:
+          isInIteration: false
+          sourceType: http-request
+          targetType: code
+        id: edge-extract-to-code
+        selected: false
+        source: http-extract
+        sourceHandle: source
+        target: code-format-report
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+      - data:
+          isInIteration: false
+          sourceType: http-request
+          targetType: code
+        id: edge-split-to-code
+        selected: false
+        source: http-split
+        sourceHandle: source
+        target: code-format-report
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+      - data:
+          isInIteration: false
+          sourceType: code
+          targetType: end
+        id: edge-code-to-end
+        selected: false
+        source: code-format-report
+        sourceHandle: source
+        target: end
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+    nodes:
+      # ------------------------------------------------------------------
+      # Start node — user supplies the document URL and API key
+      # ------------------------------------------------------------------
+      - data:
+          desc: "Provide the PDF URL and your Reducto API key to begin."
+          selected: false
+          title: Start
+          type: start
+          variables:
+            - label: Document URL
+              max_length: 2048
+              options: []
+              required: false
+              type: text-input
+              variable: doc_url
+              default: "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+            - label: Reducto API Key
+              max_length: 256
+              options: []
+              required: true
+              type: secret-input
+              variable: api_key
+        height: 180
+        id: start
+        position:
+          x: 80
+          y: 300
+        positionAbsolute:
+          x: 80
+          y: 300
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 240
+
+      # ------------------------------------------------------------------
+      # HTTP Request — Upload document, returns file_id (reducto:// URI)
+      # ------------------------------------------------------------------
+      - data:
+          authorization:
+            config:
+              header: Authorization
+              token: "Bearer {{#start.api_key#}}"
+            type: custom
+          body:
+            data: '{"url":"{{#start.doc_url#}}"}'
+            type: json
+          desc: "Upload the PDF to Reducto. Returns a reducto:// file_id for downstream nodes."
+          headers: "Content-Type: application/json"
+          method: POST
+          retry_config:
+            max_retries: 2
+            retry_enabled: true
+            retry_interval: 1000
+          selected: false
+          timeout:
+            connect: 10
+            max_connection_time: 300
+            read: 60
+            write: 30
+          title: HTTP Request - Upload
+          type: http-request
+          url: "https://platform.reducto.ai/upload"
+          variables: []
+        height: 154
+        id: http-upload
+        position:
+          x: 380
+          y: 300
+        positionAbsolute:
+          x: 380
+          y: 300
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 240
+
+      # ------------------------------------------------------------------
+      # HTTP Request — Parse document (persist_results=true for job chaining)
+      # ------------------------------------------------------------------
+      - data:
+          authorization:
+            config:
+              header: Authorization
+              token: "Bearer {{#start.api_key#}}"
+            type: custom
+          body:
+            data: >
+              {
+                "input": "{{#http-upload.body#}}",
+                "settings": {
+                  "persist_results": true
+                },
+                "formatting": {
+                  "merge_tables": true
+                },
+                "retrieval": {
+                  "filter_blocks": ["Header", "Footer", "Page Number"]
+                }
+              }
+            type: json
+          desc: >
+            Parse with persist_results=true so the result is cached server-side.
+            Downstream extract and split nodes use jobid:// to skip re-parsing.
+            The body passes the full upload response — Reducto accepts both the
+            reducto:// URI directly or the file_id field.
+          headers: "Content-Type: application/json"
+          method: POST
+          retry_config:
+            max_retries: 2
+            retry_enabled: true
+            retry_interval: 2000
+          selected: false
+          timeout:
+            connect: 10
+            max_connection_time: 300
+            read: 120
+            write: 30
+          title: HTTP Request - Parse
+          type: http-request
+          url: "https://platform.reducto.ai/parse"
+          variables: []
+        height: 154
+        id: http-parse
+        position:
+          x: 680
+          y: 300
+        positionAbsolute:
+          x: 680
+          y: 300
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 240
+
+      # ------------------------------------------------------------------
+      # HTTP Request — Extract structured fields via jobid:// (no re-parse)
+      # ------------------------------------------------------------------
+      - data:
+          authorization:
+            config:
+              header: Authorization
+              token: "Bearer {{#start.api_key#}}"
+            type: custom
+          body:
+            data: >
+              {
+                "input": "jobid://{{#http-parse.body.job_id#}}",
+                "instructions": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "portfolio_value": {
+                        "type": "object",
+                        "properties": {
+                          "beginning": { "type": "number" },
+                          "ending": { "type": "number" }
+                        }
+                      },
+                      "account_number": { "type": "string" },
+                      "account_type": { "type": "string" },
+                      "top_holdings": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": { "type": "string" },
+                            "value": { "type": "number" },
+                            "percentage": { "type": "number" }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "system_prompt": "Return null for missing fields. All monetary values are USD."
+                },
+                "settings": {
+                  "deep_extract": false,
+                  "citations": false
+                }
+              }
+            type: json
+          desc: >
+            Extract structured financial fields using jobid:// — reuses the
+            cached parse result instead of downloading and processing the PDF again.
+          headers: "Content-Type: application/json"
+          method: POST
+          retry_config:
+            max_retries: 1
+            retry_enabled: true
+            retry_interval: 1000
+          selected: false
+          timeout:
+            connect: 10
+            max_connection_time: 300
+            read: 120
+            write: 30
+          title: HTTP Request - Extract
+          type: http-request
+          url: "https://platform.reducto.ai/extract"
+          variables: []
+        height: 154
+        id: http-extract
+        position:
+          x: 980
+          y: 160
+        positionAbsolute:
+          x: 980
+          y: 160
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 240
+
+      # ------------------------------------------------------------------
+      # HTTP Request — Split document into named sections via jobid://
+      # ------------------------------------------------------------------
+      - data:
+          authorization:
+            config:
+              header: Authorization
+              token: "Bearer {{#start.api_key#}}"
+            type: custom
+          body:
+            data: >
+              {
+                "input": "jobid://{{#http-parse.body.job_id#}}",
+                "split_description": [
+                  {
+                    "name": "Cover Page",
+                    "description": "Title and portfolio summary"
+                  },
+                  {
+                    "name": "Account Summary",
+                    "description": "Account details and holdings"
+                  },
+                  {
+                    "name": "Income Summary",
+                    "description": "Income and dividends"
+                  }
+                ]
+              }
+            type: json
+          desc: >
+            Split the document into named sections using the same cached job.
+            Returns page ranges for each logical section.
+          headers: "Content-Type: application/json"
+          method: POST
+          retry_config:
+            max_retries: 1
+            retry_enabled: true
+            retry_interval: 1000
+          selected: false
+          timeout:
+            connect: 10
+            max_connection_time: 300
+            read: 120
+            write: 30
+          title: HTTP Request - Split
+          type: http-request
+          url: "https://platform.reducto.ai/split"
+          variables: []
+        height: 154
+        id: http-split
+        position:
+          x: 980
+          y: 440
+        positionAbsolute:
+          x: 980
+          y: 440
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 240
+
+      # ------------------------------------------------------------------
+      # Code node — format all outputs into a readable benchmark report
+      # ------------------------------------------------------------------
+      - data:
+          code: |
+            import json
+
+            def main(inputs: dict) -> dict:
+                extract_raw = inputs.get("extract_body", "{}")
+                split_raw   = inputs.get("split_body", "{}")
+                job_id      = inputs.get("job_id", "unknown")
+
+                # Parse API responses — they arrive as strings from HTTP nodes
+                try:
+                    extract = json.loads(extract_raw) if isinstance(extract_raw, str) else extract_raw
+                except (json.JSONDecodeError, TypeError):
+                    extract = {"error": "could not parse extract response"}
+
+                try:
+                    split = json.loads(split_raw) if isinstance(split_raw, str) else split_raw
+                except (json.JSONDecodeError, TypeError):
+                    split = {"error": "could not parse split response"}
+
+                # Build readable report
+                lines = [
+                    "# Reducto Benchmark Report",
+                    "",
+                    f"**job_id:** `{job_id}`",
+                    f"**jobid:// chaining:** extract and split reused the cached parse result",
+                    "",
+                    "## Extracted Fields",
+                ]
+
+                result = extract.get("result", extract)
+                pv = result.get("portfolio_value", {}) if isinstance(result, dict) else {}
+                if pv:
+                    lines.append(f"- Portfolio beginning: ${pv.get('beginning', 'N/A'):,}")
+                    lines.append(f"- Portfolio ending:    ${pv.get('ending', 'N/A'):,}")
+
+                acct_num  = result.get("account_number", "N/A") if isinstance(result, dict) else "N/A"
+                acct_type = result.get("account_type", "N/A") if isinstance(result, dict) else "N/A"
+                lines.append(f"- Account number: {acct_num}")
+                lines.append(f"- Account type:   {acct_type}")
+
+                holdings = result.get("top_holdings", []) if isinstance(result, dict) else []
+                if holdings:
+                    lines.append("")
+                    lines.append("### Top Holdings")
+                    for h in holdings[:5]:
+                        name = h.get("name", "?")
+                        val  = h.get("value", 0)
+                        pct  = h.get("percentage", 0)
+                        lines.append(f"- {name}: ${val:,.2f} ({pct}%)")
+
+                lines.append("")
+                lines.append("## Document Sections")
+
+                sections = split.get("sections", split.get("result", [])) if isinstance(split, dict) else []
+                if isinstance(sections, list):
+                    for sec in sections:
+                        if isinstance(sec, dict):
+                            name   = sec.get("name", sec.get("section_name", "?"))
+                            pages  = sec.get("page_range", sec.get("pages", "?"))
+                            lines.append(f"- **{name}**: pages {pages}")
+                        else:
+                            lines.append(f"- {sec}")
+                else:
+                    lines.append(f"Raw split output: {json.dumps(split)[:400]}")
+
+                return {"report": "\n".join(lines)}
+
+          code_language: python3
+          desc: "Combine extract and split results into a Markdown benchmark report."
+          outputs:
+            - label: Benchmark Report
+              name: report
+              type: string
+              value: ""
+          selected: false
+          title: Format Report
+          type: code
+          variables:
+            - value_selector:
+                - http-extract
+                - body
+              variable: extract_body
+            - value_selector:
+                - http-split
+                - body
+              variable: split_body
+            - value_selector:
+                - http-parse
+                - body.job_id
+              variable: job_id
+        height: 102
+        id: code-format-report
+        position:
+          x: 1280
+          y: 300
+        positionAbsolute:
+          x: 1280
+          y: 300
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 240
+
+      # ------------------------------------------------------------------
+      # End node — surface the formatted report as workflow output
+      # ------------------------------------------------------------------
+      - data:
+          desc: "Final benchmark report combining extract and split results."
+          outputs:
+            - label: Benchmark Report
+              name: report
+              type: string
+              value_selector:
+                - code-format-report
+                - report
+          selected: false
+          title: End
+          type: end
+        height: 98
+        id: end
+        position:
+          x: 1580
+          y: 300
+        positionAbsolute:
+          x: 1580
+          y: 300
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 240

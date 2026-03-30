@@ -1,0 +1,678 @@
+[
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "citations_bbox",
+    "param": "citations=True \u2192 bbox in response",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "citations": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "citations": true,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "deep_extract": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "include_images": true,
+          "citations": true,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "system_prompt": "Find the total portfolio value or total account value. It is usually a dollar amount.",
+          "citations": true,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "citations_no_chunking",
+    "param": "citations=True must NOT have chunk_mode",
+    "param_present": false,
+    "param_correct": false,
+    "api_accepted": false,
+    "score": 0,
+    "tool_calls": [],
+    "error": "{'message': 'Internal Server Error', 'code': 500}",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "system_prompt_units",
+    "param": "system_prompt for unit conversion",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "system_prompt": "The document reports values in thousands. You must convert all extracted dollar amounts to their actual full dollar values by multiplying the stated number by 1,000. For example, if the document says 1,234, you must output 1234000."
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "optimize_latency_not_deep",
+    "param": "optimize_for_latency=True, deep_extract absent",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "optimize_for_latency": true
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "include_images_chart",
+    "param": "include_images=True for chart data",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "system_prompt": "Extract the asset allocation percentages for each asset class from the pie chart on page 2.",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "include_images": true,
+          "array_extract": true
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "merge_tables_crosspage",
+    "param": "merge_tables=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "agentic_scopes": "[\"table\"]",
+          "merge_tables": true
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "filter_blocks_clean",
+    "param": "filter_blocks=['Header','Footer','Page Number']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "filter_blocks": "[\"Header\", \"Footer\", \"Page Number\"]",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "chunk_section_rag",
+    "param": "chunk_mode='section' for semantic RAG",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "chunk_mode": "section",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "embedding_optimized_flag",
+    "param": "embedding_optimized=True",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "chunk_mode": "section",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "embedding_optimized": true
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "page_range_cost",
+    "param": "page_range to reduce credit cost",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "page_range_end": 7,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "page_range_start": 3
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "return_images_array",
+    "param": "return_images=['figure','table']",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "return_images_types": "[\"figure\",\"table\"]",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "return_figure_images": true,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "return_images_types": "[\"figure\",\"table\"]"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "ffff4bc5-21bd-448b-bfb9-ae776f96cf05"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "upload_reuse",
+    "param": "upload \u2192 reducto:// \u2192 reuse across calls",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "persist_results": true,
+          "input": "reducto://ead654c9-385b-4723-8f1a-c9e6e2d3a7b4"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "persist_results": true,
+          "input": "reducto://d1a149d5-892d-4c20-ac00-b56b2e697376"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "persist_results": true
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://450a2a36-5e12-4543-ab63-1761f71f4fad"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "jobid://450a2a36-5e12-4543-ab63-1761f71f4fad",
+          "categories_json": "[{\"category\": \"Quarterly Report\", \"criteria\": \"Report covers a 3-month period\"}, {\"category\": \"Annual Report\", \"criteria\": \"Report covers a 12-month period\"}, {\"category\": \"Monthly Report\", \"criteria\": \"Report covers a 1-month period\"}]"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "categories_json": "[{\"category\": \"Quarterly Report\", \"criteria\": [\"Report covers a 3-month period\"]}, {\"category\": \"Annual Report\", \"criteria\": [\"Report covers a 12-month period\"]}, {\"category\": \"Monthly Report\", \"criteria\": [\"Report covers a 1-month period\"]}]",
+          "input": "jobid://450a2a36-5e12-4543-ab63-1761f71f4fad"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "reducto://dbf1d770-46ae-416c-a954-e253bba698c3",
+          "categories_json": "[{\"category\": \"Quarterly Report\", \"criteria\": [\"Report covers a 3-month period\"]}, {\"category\": \"Annual Report\", \"criteria\": [\"Report covers a 12-month period\"]}, {\"category\": \"Monthly Report\", \"criteria\": [\"Report covers a 1-month period\"]}]"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "categories_json": "[{\"category\": \"Quarterly Report\", \"criteria\": [\"Report covers a 3-month period\"]}, {\"category\": \"Annual Report\", \"criteria\": [\"Report covers a 12-month period\"]}, {\"category\": \"Monthly Report\", \"criteria\": [\"Report covers a 1-month period\"]}]",
+          "input": "reducto://4240ec58-14d0-49ba-8489-d91ca63c1d60"
+        }
+      },
+      {
+        "tool": "reducto_upload",
+        "args": {
+          "file_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "categories_json": "[{\"category\": \"Quarterly Report\", \"criteria\": [\"Report covers a 3-month period\"]}, {\"category\": \"Annual Report\", \"criteria\": [\"Report covers a 12-month period\"]}, {\"category\": \"Monthly Report\", \"criteria\": [\"Report covers a 1-month period\"]}]",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "classify_then_route",
+    "param": "classify \u2192 choose schema \u2192 extract",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "categories_json": "[\n  {\n    \"category\": \"financial statement\",\n    \"criteria\": \"A document showing financial holdings, account balances, transactions, or investment performance.\"\n  },\n  {\n    \"category\": \"invoice\",\n    \"criteria\": \"A bill or request for payment for goods or services.\"\n  },\n  {\n    \"category\": \"contract\",\n    \"criteria\": \"A legally binding agreement between two or more parties.\"\n  }\n]",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "categories_json": "[\n  {\n    \"category\": \"financial statement\",\n    \"criteria\": [\"A document showing financial holdings, account balances, transactions, or investment performance.\"]\n  },\n  {\n    \"category\": \"invoice\",\n    \"criteria\": [\"A bill or request for payment for goods or services.\"]\n  },\n  {\n    \"category\": \"contract\",\n    \"criteria\": [\"A legally binding agreement between two or more parties.\"]\n  }\n]",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "array_extract": true
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "split_then_extract_section",
+    "param": "split \u2192 use page range \u2192 extract section only",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "sections_json": "[{\"name\": \"Portfolio Holdings\", \"description\": \"Section containing the list of portfolio holdings, assets, and investments.\"}]"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "page_range_start": 3,
+          "page_range_end": 3,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "page_range_end": 4,
+          "page_range_start": 4
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "page_range_end": 6,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "page_range_start": 5
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "citations": true,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "page_range_start": 3,
+          "page_range_end": 3,
+          "persist_results": true,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "0f8b61d7-3e05-4d84-a1a7-e0b014c7db26"
+        }
+      },
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "jobid://0c357ef5-d071-43c6-9c7b-e72c0d62cf47",
+          "array_extract": true
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "edit_basic_fill",
+    "param": "reducto_edit with edit_instructions",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": false,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "edit_instructions": "set the account holder name to 'Jane Smith' and the date to today",
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "edit_instructions": "set the account holder name to 'Jane Smith' and the date to today",
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "form_schema_json": "[{\"field_name\": \"Account Holder Name\", \"value\": \"Jane Smith\", \"field_type\": \"text\"}, {\"field_name\": \"Date\", \"value\": \"today\", \"field_type\": \"date\"}]"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "edit_form_schema",
+    "param": "form_schema_json with EditWidget objects",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": false,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "edit_instructions": "Fill the form with the provided structured data.",
+          "form_schema_json": "[{\"field_name\": \"Name\", \"value\": \"John Smith\", \"field_type\": \"text\"}, {\"field_name\": \"Date\", \"value\": \"2026-03-28\", \"field_type\": \"date\"}, {\"field_name\": \"Amount\", \"value\": \"$45,231.00\", \"field_type\": \"text\"}, {\"field_name\": \"Account\", \"value\": \"X-7842\", \"field_type\": \"text\"}, {\"field_name\": \"Signature\", \"value\": \"approved\", \"field_type\": \"signature\"}]",
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "form_schema_json": "[{\"field_name\": \"Name\", \"value\": \"John Smith\", \"field_type\": \"text\"}, {\"field_name\": \"Date\", \"value\": \"2026-03-28\", \"field_type\": \"date\"}, {\"field_name\": \"Amount\", \"value\": \"$45,231.00\", \"field_type\": \"text\"}, {\"field_name\": \"Account\", \"value\": \"X-7842\", \"field_type\": \"text\"}, {\"field_name\": \"Signature\", \"value\": \"approved\", \"field_type\": \"signature\"}]",
+          "edit_instructions": "Fill Name with John Smith, Date with 2026-03-28, Amount with $45,231.00, Account with X-7842, Signature with approved."
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "edit_flatten_lock",
+    "param": "flatten=True to lock filled PDF",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": false,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "edit_instructions": "Fill Recipient with Acme Corp",
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "flatten": true
+        }
+      },
+      {
+        "tool": "reducto_edit",
+        "args": {
+          "form_schema_json": "[{\"field_name\": \"Recipient\", \"value\": \"Acme Corp\", \"field_type\": \"text\"}]",
+          "flatten": true,
+          "document_url": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "edit_instructions": "Fill Recipient with Acme Corp"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "empty_result_ocr_retry",
+    "param": "empty parse \u2192 retry with ocr mode",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "extraction_mode": "ocr",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "classify_page_limit",
+    "param": "classify page_range max 10 pages",
+    "param_present": true,
+    "param_correct": false,
+    "api_accepted": true,
+    "score": 2,
+    "tool_calls": [
+      {
+        "tool": "reducto_parse",
+        "args": {
+          "page_range_end": 5,
+          "persist_results": true,
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "page_range_start": 1
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "categories_json": "[{\"category\": \"NDA\", \"criteria\": \"Non-disclosure agreement\"}, {\"category\": \"MSA\", \"criteria\": \"Master service agreement\"}, {\"category\": \"SOW\", \"criteria\": \"Statement of work\"}, {\"category\": \"Employment Agreement\", \"criteria\": \"Employment contract\"}, {\"category\": \"Other\", \"criteria\": \"Any other document type, such as an investment report or financial statement\"}]",
+          "input": "jobid://a0348cc9-c8d2-45c3-be6c-898b295253d3"
+        }
+      },
+      {
+        "tool": "reducto_classify",
+        "args": {
+          "input": "jobid://a0348cc9-c8d2-45c3-be6c-898b295253d3",
+          "categories_json": "[{\"category\": \"NDA\", \"criteria\": [\"Non-disclosure agreement\"]}, {\"category\": \"MSA\", \"criteria\": [\"Master service agreement\"]}, {\"category\": \"SOW\", \"criteria\": [\"Statement of work\"]}, {\"category\": \"Employment Agreement\", \"criteria\": [\"Employment contract\"]}, {\"category\": \"Other\", \"criteria\": [\"Investment report\", \"Financial statement\"]}]"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "jobid_expiry_recovery",
+    "param": "404 on jobid:// \u2192 re-parse original",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_extract",
+        "args": {
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "table_cutoff_preserve",
+    "param": "table_cutoff='preserve' in split",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_split",
+        "args": {
+          "split_rules": "Make sure no table gets cut in half at a section boundary \u2014 if a table spans a boundary, keep it whole in the section where it started.",
+          "sections_json": "[{\"name\": \"Account Summary\", \"description\": \"Summary of the account\"}, {\"name\": \"Portfolio Holdings\", \"description\": \"Details of portfolio holdings\"}, {\"name\": \"Income\", \"description\": \"Income details\"}]",
+          "input": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+          "table_cutoff": "preserve"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "get_job_poll",
+    "param": "reducto_get_job for async polling",
+    "param_present": true,
+    "param_correct": true,
+    "api_accepted": true,
+    "score": 3,
+    "tool_calls": [
+      {
+        "tool": "reducto_get_job",
+        "args": {
+          "job_id": "parse-job-abc123-def456"
+        }
+      }
+    ],
+    "error": "",
+    "credit_error": false
+  }
+]

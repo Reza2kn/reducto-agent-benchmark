@@ -1,0 +1,390 @@
+{
+  "name": "Reducto Benchmark Workflow",
+  "nodes": [
+    {
+      "id": "node-manual-trigger",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "parameters": {}
+    },
+    {
+      "id": "node-set-variables",
+      "name": "Set Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [460, 300],
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "var-doc-url",
+              "name": "doc_url",
+              "value": "https://cdn.reducto.ai/samples/fidelity-example.pdf",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node-upload",
+      "name": "Upload",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "https://platform.reducto.ai/upload",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $node['Set Variables'].json.doc_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "reducto-api-credential",
+          "name": "Reducto API"
+        }
+      }
+    },
+    {
+      "id": "node-parse",
+      "name": "Parse",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "https://platform.reducto.ai/parse",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "body": "={\n  \"input\": \"{{ $node['Upload'].json.file_id }}\",\n  \"settings\": {\n    \"persist_results\": true\n  },\n  \"formatting\": {\n    \"merge_tables\": true\n  },\n  \"retrieval\": {\n    \"filter_blocks\": [\"Header\", \"Footer\", \"Page Number\"]\n  }\n}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "reducto-api-credential",
+          "name": "Reducto API"
+        }
+      }
+    },
+    {
+      "id": "node-extract",
+      "name": "Extract",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 180],
+      "parameters": {
+        "method": "POST",
+        "url": "https://platform.reducto.ai/extract",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "body": "={\n  \"input\": \"jobid://{{ $node['Parse'].json.job_id }}\",\n  \"instructions\": {\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"portfolio_value\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"beginning\": { \"type\": \"number\" },\n            \"ending\": { \"type\": \"number\" }\n          }\n        },\n        \"account_number\": { \"type\": \"string\" },\n        \"account_type\": { \"type\": \"string\" },\n        \"top_holdings\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"name\": { \"type\": \"string\" },\n              \"value\": { \"type\": \"number\" },\n              \"percentage\": { \"type\": \"number\" }\n            }\n          }\n        }\n      }\n    },\n    \"system_prompt\": \"Return null for missing fields. All monetary values are USD.\"\n  },\n  \"settings\": {\n    \"deep_extract\": false,\n    \"citations\": false\n  }\n}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "reducto-api-credential",
+          "name": "Reducto API"
+        }
+      }
+    },
+    {
+      "id": "node-split",
+      "name": "Split",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "https://platform.reducto.ai/split",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "body": "={\n  \"input\": \"jobid://{{ $node['Parse'].json.job_id }}\",\n  \"split_description\": [\n    {\n      \"name\": \"Cover Page\",\n      \"description\": \"Title and portfolio summary\"\n    },\n    {\n      \"name\": \"Account Summary\",\n      \"description\": \"Account details and holdings\"\n    },\n    {\n      \"name\": \"Income Summary\",\n      \"description\": \"Income and dividends\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "reducto-api-credential",
+          "name": "Reducto API"
+        }
+      }
+    },
+    {
+      "id": "node-classify",
+      "name": "Classify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 420],
+      "parameters": {
+        "method": "POST",
+        "url": "https://platform.reducto.ai/classify",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "body": "={\n  \"input\": \"{{ $node['Upload'].json.file_id }}\",\n  \"classification_schema\": [\n    {\n      \"category\": \"financial_statement\",\n      \"criteria\": [\"portfolio value\", \"brokerage account\", \"holdings\"]\n    },\n    {\n      \"category\": \"invoice\",\n      \"criteria\": [\"billing\", \"amount due\", \"invoice number\"]\n    },\n    {\n      \"category\": \"contract\",\n      \"criteria\": [\"parties\", \"obligations\", \"signatures\"]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "reducto-api-credential",
+          "name": "Reducto API"
+        }
+      }
+    },
+    {
+      "id": "node-merge-results",
+      "name": "Merge Results",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1340, 300],
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "merge-job-id",
+              "name": "job_id",
+              "value": "={{ $node['Parse'].json.job_id }}",
+              "type": "string"
+            },
+            {
+              "id": "merge-extract",
+              "name": "extract",
+              "value": "={{ $node['Extract'].json }}",
+              "type": "object"
+            },
+            {
+              "id": "merge-split",
+              "name": "split_sections",
+              "value": "={{ $node['Split'].json }}",
+              "type": "object"
+            },
+            {
+              "id": "merge-classify",
+              "name": "classification",
+              "value": "={{ $node['Classify'].json }}",
+              "type": "object"
+            },
+            {
+              "id": "merge-doc-url",
+              "name": "doc_url",
+              "value": "={{ $node['Set Variables'].json.doc_url }}",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node-error-test-1",
+      "name": "Error Test 1 - Bad URL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 180],
+      "parameters": {
+        "method": "POST",
+        "url": "https://platform.reducto.ai/parse",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "body": "{\n  \"input\": \"https://this-does-not-exist.example.com/fake.pdf\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "reducto-api-credential",
+          "name": "Reducto API"
+        }
+      }
+    },
+    {
+      "id": "node-error-test-2",
+      "name": "Error Test 2 - Bad Auth",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "https://platform.reducto.ai/parse",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer totally_invalid_key_xyz_benchmark_test"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": "={\n  \"input\": \"{{ $node['Set Variables'].json.doc_url }}\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Set Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variables": {
+      "main": [
+        [
+          {
+            "node": "Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload": {
+      "main": [
+        [
+          {
+            "node": "Parse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse": {
+      "main": [
+        [
+          {
+            "node": "Extract",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Classify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract": {
+      "main": [
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split": {
+      "main": [
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify": {
+      "main": [
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Results": {
+      "main": [
+        [
+          {
+            "node": "Error Test 1 - Bad URL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Error Test 2 - Bad Auth",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2026-03-27T00:00:00.000Z",
+      "updatedAt": "2026-03-27T00:00:00.000Z",
+      "id": "reducto-benchmark",
+      "name": "reducto-benchmark"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-27T00:00:00.000Z",
+  "versionId": "1"
+}

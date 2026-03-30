@@ -1,0 +1,23 @@
+{
+  "platform": "LangChain/Qwen-0.8B-AgentJSON-Q6K (local)",
+  "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+  "integration_path": "framework",
+  "capability": "extract",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 3,
+  "feature_coverage": 4,
+  "error_recovery": 3,
+  "output_quality": 1,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 103.97,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [],
+  "notes": "LangChain ReAct agent \u2014 Qwen-0.8B-AgentJSON-Q6K (local). Provider: local. Eval details: {'portfolio_beginning_correct': False, 'portfolio_ending_correct': False, 'account_number_found': False, 'account_type_found': False, 'top_holding_found': False, 'is_structured_json': False}",
+  "total_score": 20,
+  "max_score": 35,
+  "result_key": "langchain__qwen-0_8b-agentjson-q6k_local__framework__extract"
+}

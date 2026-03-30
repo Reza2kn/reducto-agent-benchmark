@@ -1,0 +1,23 @@
+{
+  "platform": "Gemini CLI",
+  "model": "gemini-2.5-pro",
+  "integration_path": "python_sdk",
+  "capability": "extract",
+  "discovery": 4,
+  "setup_friction": 4,
+  "integration_complexity": 0,
+  "feature_coverage": 4,
+  "error_recovery": 0,
+  "output_quality": 0,
+  "token_efficiency": 0,
+  "mcp_compatibility": 4,
+  "total_tokens": 0,
+  "wall_time_seconds": 0.0,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [],
+  "notes": "STUB \u2014 run the prompt above with `gemini` and fill scores after review.",
+  "total_score": 16,
+  "max_score": 20,
+  "result_key": "gemini_cli__python_sdk__extract"
+}

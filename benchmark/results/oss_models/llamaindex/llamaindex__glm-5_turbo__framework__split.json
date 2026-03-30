@@ -1,0 +1,26 @@
+{
+  "platform": "LlamaIndex/GLM-5 Turbo",
+  "model": "GLM-5 Turbo",
+  "integration_path": "framework",
+  "capability": "split",
+  "discovery": 3,
+  "setup_friction": 3,
+  "integration_complexity": 4,
+  "feature_coverage": 4,
+  "error_recovery": 2,
+  "output_quality": 1,
+  "token_efficiency": 3,
+  "mcp_compatibility": 0,
+  "total_tokens": 0,
+  "wall_time_seconds": 80.1,
+  "tool_calls_count": 0,
+  "lines_of_code": 0,
+  "errors_encountered": [
+    "Provider returned error"
+  ],
+  "notes": "LlamaIndex ReActAgent \u2014 GLM-5 Turbo. FunctionTool.from_defaults introspects type annotations automatically. Eval details: {'cover page': False, 'account summary': False, 'holdings': False, 'income summary': False, 'has_page_numbers': False}",
+  "total_score": 20,
+  "max_score": 35,
+  "result_key": "llamaindex__glm-5_turbo__framework__split",
+  "raw_output": "[error] Provider returned error"
+}
