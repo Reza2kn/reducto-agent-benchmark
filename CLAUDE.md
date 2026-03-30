@@ -11,7 +11,7 @@ This is a weekend project by Reza Sayar (Data Engineer @ Reducto) to demonstrate
 ```
 reducto-agent-benchmark/
 ├── mcp-server/              # Standalone Reducto MCP server (TypeScript)
-│   ├── src/index.ts         # MCP server implementation — 6 tools
+│   ├── src/index.ts         # MCP server implementation — 7 tools
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── README.md
