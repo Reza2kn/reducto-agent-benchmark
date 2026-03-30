@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "classify_route_extract",
+    "score": 0,
+    "secs": 81.8,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 109.0,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "agentic_parse_citations",
+    "score": 1,
+    "secs": 130.5,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "extract_then_edit_form",
+    "score": 1,
+    "secs": 78.9,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 2,
+    "secs": 458.0,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 2,
+    "secs": 177.8,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-AgentJSON-Q6K (local)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 603.4,
+    "credit_error": false
+  }
+]

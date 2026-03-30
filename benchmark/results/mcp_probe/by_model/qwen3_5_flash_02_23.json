@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Qwen3.5 Flash (02-23)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 1,
+    "secs": 89.6,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5 Flash (02-23)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 63.8,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5 Flash (02-23)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 25.3,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5 Flash (02-23)",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 176.9,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5 Flash (02-23)",
+    "probe_id": "agentic_parse_citations",
+    "score": 2,
+    "secs": 250.7,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5 Flash (02-23)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 1,
+    "secs": 33.0,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5 Flash (02-23)",
+    "probe_id": "extract_then_edit_form",
+    "score": 2,
+    "secs": 183.0,
+    "credit_error": false
+  }
+]

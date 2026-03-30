@@ -7,13 +7,13 @@ from datetime import datetime, timedelta
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 LOG_PATH         = "/tmp/mcp_race.log"
-TOTAL_RUNS       = 182      # 26 models × 7 probes
+TOTAL_RUNS       = 189      # 27 models × 7 probes (26 + ReductoLoRA baseline)
 PROBES_PER_MODEL = 7
 
 RE_START     = re.compile(r"\[(.+?)\]\s+(\S+)\s+…")           # findall over each line
 RE_RESULT    = re.compile(r"^\s+\[(.+?)\]\s+(\S+)\s+→\s+(\d|N/A)/3\s+\(([0-9.]+)s\)")  # captures model+probe
-RE_HEADER    = re.compile(r"Param probe:\s+(\d+)\s+models.*?(\d+)\s+probes\s+=\s+(\d+)\s+runs")
-RE_MODEL_LST = re.compile(r"^\s+•\s+(.+)$")
+RE_HEADER    = re.compile(r"MCP Probe:\s+(\d+)\s+models\s+x\s+(\d+)\s+probes\s+=\s+(\d+)\s+runs")
+RE_MODEL_LST = re.compile(r"^\s+\*\s+(.+)$")
 RE_ERROR     = re.compile(r"!!\s+(.+?)/(\S+):")
 RE_CREDIT    = re.compile(r"Still 402|Credit error \(402\)|marking as N/A")
 
@@ -152,7 +152,9 @@ def parse_log():
     for line in lines:
         m = RE_HEADER.search(line)
         if m:
-            total_runs = int(m.group(3)); probes_per_model = int(m.group(2))
+            # Take the largest run (first full run dominates; ignore smaller appended runs)
+            if int(m.group(3)) > total_runs or total_runs == TOTAL_RUNS:
+                total_runs = int(m.group(3)); probes_per_model = int(m.group(2))
         m = RE_MODEL_LST.match(line)
         if m:
             name = m.group(1).strip()
@@ -630,11 +632,11 @@ details[open] summary::before { transform: rotate(90deg); color: #9d17a0; }
     reducto
   </div>
   <span class="navbar-badge">MCP Race</span>
-  <span class="navbar-title">🏎️ 26 models × 7 hard enterprise probes</span>
+  <span class="navbar-title">🏎️ 27 models × 7 hard enterprise probes</span>
 </nav>
 
 <div class="page">
-<div class="title">🏎️ MCP Race — 26 models × 7 enterprise probes = 182 runs</div>
+<div class="title">🏎️ MCP Race — 27 models × 7 enterprise probes = 189 runs</div>
 <div style="text-align:center;font-size:12px;color:#6e4a7a;margin:-10px 0 12px;letter-spacing:0.03em">
   Tool definitions sourced from our open-source
   <a href="https://github.com/Reza2kn/reducto-agent-benchmark/tree/main/mcp-server" target="_blank"

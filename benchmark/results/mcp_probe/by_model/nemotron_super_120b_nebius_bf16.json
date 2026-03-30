@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Nemotron Super 120B (Nebius bf16)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 2,
+    "secs": 8.8,
+    "credit_error": false
+  },
+  {
+    "model": "Nemotron Super 120B (Nebius bf16)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 40.7,
+    "credit_error": false
+  },
+  {
+    "model": "Nemotron Super 120B (Nebius bf16)",
+    "probe_id": "classify_route_extract",
+    "score": 0,
+    "secs": 84.2,
+    "credit_error": false
+  },
+  {
+    "model": "Nemotron Super 120B (Nebius bf16)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 17.3,
+    "credit_error": false
+  },
+  {
+    "model": "Nemotron Super 120B (Nebius bf16)",
+    "probe_id": "agentic_parse_citations",
+    "score": 0,
+    "secs": 2.3,
+    "credit_error": false
+  },
+  {
+    "model": "Nemotron Super 120B (Nebius bf16)",
+    "probe_id": "extract_then_edit_form",
+    "score": 0,
+    "secs": 7.5,
+    "credit_error": false
+  },
+  {
+    "model": "Nemotron Super 120B (Nebius bf16)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 0,
+    "secs": 2.9,
+    "credit_error": false
+  }
+]

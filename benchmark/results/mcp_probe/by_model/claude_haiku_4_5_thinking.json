@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 38.0,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "upload_persist_array_extract",
+    "score": 3,
+    "secs": 39.9,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "split_preserve_extract_range",
+    "score": 3,
+    "secs": 50.9,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "dual_doc_fan_out",
+    "score": 3,
+    "secs": 29.8,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 158.3,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "extract_then_edit_form",
+    "score": 3,
+    "secs": 179.0,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Haiku 4.5 + thinking",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 3,
+    "secs": 327.5,
+    "credit_error": false
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "model": "LFM-2.5 1.2B Thinking Q6K (local)",
+    "probe_id": "classify_route_extract",
+    "score": 0,
+    "secs": 2.4,
+    "credit_error": false
+  },
+  {
+    "model": "LFM-2.5 1.2B Thinking Q6K (local)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 0,
+    "secs": 2.5,
+    "credit_error": false
+  },
+  {
+    "model": "LFM-2.5 1.2B Thinking Q6K (local)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 0,
+    "secs": 1.4,
+    "credit_error": false
+  },
+  {
+    "model": "LFM-2.5 1.2B Thinking Q6K (local)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 0,
+    "secs": 1.3,
+    "credit_error": false
+  },
+  {
+    "model": "LFM-2.5 1.2B Thinking Q6K (local)",
+    "probe_id": "agentic_parse_citations",
+    "score": 0,
+    "secs": 1.5,
+    "credit_error": false
+  },
+  {
+    "model": "LFM-2.5 1.2B Thinking Q6K (local)",
+    "probe_id": "extract_then_edit_form",
+    "score": 0,
+    "secs": 1.3,
+    "credit_error": false
+  },
+  {
+    "model": "LFM-2.5 1.2B Thinking Q6K (local)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 0,
+    "secs": 1.4,
+    "credit_error": false
+  }
+]

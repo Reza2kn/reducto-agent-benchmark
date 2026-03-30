@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Kimi K2.5 via Fireworks",
+    "probe_id": "upload_persist_array_extract",
+    "score": 3,
+    "secs": 60.6,
+    "credit_error": false
+  },
+  {
+    "model": "Kimi K2.5 via Fireworks",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 122.4,
+    "credit_error": false
+  },
+  {
+    "model": "Kimi K2.5 via Fireworks",
+    "probe_id": "dual_doc_fan_out",
+    "score": 3,
+    "secs": 131.1,
+    "credit_error": false
+  },
+  {
+    "model": "Kimi K2.5 via Fireworks",
+    "probe_id": "extract_then_edit_form",
+    "score": 0,
+    "secs": 5.9,
+    "credit_error": false
+  },
+  {
+    "model": "Kimi K2.5 via Fireworks",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 142.5,
+    "credit_error": false
+  },
+  {
+    "model": "Kimi K2.5 via Fireworks",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 358.6,
+    "credit_error": false
+  },
+  {
+    "model": "Kimi K2.5 via Fireworks",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 3,
+    "secs": 218.3,
+    "credit_error": false
+  }
+]

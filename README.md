@@ -9,7 +9,7 @@
 | Component | Status |
 |-----------|--------|
 | Hard-probe benchmark — 20 models × 22 probes | ✅ 432 runs complete |
-| MCP Race — 26 models × 7 adversarial MCP probes | ✅ complete |
+| MCP Race — 27 models × 7 adversarial MCP probes | ✅ complete |
 | Live tracker UI | ✅ benchmark.agentreducto.com |
 | MCP server v0.2.0 — all 7 tools | ✅ fully tested |
 | R1 training data — direct API traces | ✅ 16,669 verified examples |
@@ -72,19 +72,43 @@ agentjson_tool_dispatch
 
 ## MCP Race
 
-26 frontier models on 7 adversarial enterprise workflows — multi-hop chains, persisted job fan-outs, dual-doc parallel processing, agentic scope arrays. Tests whether a model reads the MCP tool definition or hallucinates REST API params.
+27 models on 7 adversarial enterprise workflows — multi-hop chains, persisted job fan-outs, dual-doc parallel processing, agentic scope arrays. Tests whether a model reads the MCP tool definition or hallucinates REST API params.
 
 **Tool schemas used in the race are sourced directly from the [Reducto MCP server](mcp-server/) in this repo** — exact parameter names, types, and descriptions from `mcp-server/src/index.ts`. Adversarial prompts deliberately use REST API param names (e.g. `schema_json`, `allow`) to surface models that hallucinate instead of reading the spec. A model that has seen or been trained on our MCP server will have a structural advantage.
 
 **Live results:** [mcp.agentreducto.com](https://mcp.agentreducto.com)
 
-### Top 3 (perfect or near-perfect)
+### Full Leaderboard (27 models × 7 probes)
 
 | Model | Score |
 |-------|-------|
 | Claude Haiku 4.5 + thinking | 21/21 ✅ |
-| Gemini 3.1 Flash Lite (preview) | 20/21 |
+| Claude Opus 4.6 + thinking | 20/21 |
+| OpenAI o3 (reasoning=high) | 20/21 |
+| OpenAI o4-mini (reasoning=high) | 20/21 |
+| Qwen3 32B via Groq | 20/21 |
 | MiniMax M2.7 (highspeed) | 20/21 |
+| Gemini 3.1 Flash Lite (preview) | 20/21 |
+| GPT-OSS 20B via Groq | 19/21 |
+| Inception Mercury 2 | 18/21 |
+| Kimi K2.5 via Fireworks | 17/21 |
+| GPT-5.4 Nano | 17/21 |
+| GPT-5.4 Mini | 16/21 |
+| Mistral Devstral Small | 16/21 |
+| Gemini 3.1 Pro (custom-tools preview) | 16/21 |
+| Arcee Trinity Large (prime) | 14/21 |
+| StepFun Step-3.5 Flash | 13/21 |
+| Qwen3.5-122B-A10B | 13/21 |
+| Xiaomi MiMo V2 Pro (fp8) | 13/21 |
+| Qwen3 Coder Next (ionstream fp8) | 12/21 |
+| Qwen3.5 Flash (02-23) | 12/21 |
+| GLM-5 Turbo | 11/21 |
+| Qwen3.5-35B-A3B (Atlas Cloud fp8) | 9/21 |
+| Qwen-0.8B-AgentJSON-Q6K (local) | 9/21 |
+| Qwen-0.8B-ReductoLoRA-Q6K (local) | 9/21 |
+| Nemotron Nano 30B (DeepInfra fp4) | 7/21 |
+| Nemotron Super 120B (Nebius bf16) | 5/21 |
+| LFM-2.5 1.2B Thinking Q6K (local) | 0/21 |
 
 ### ReductoLoRA-Q6K baseline (0.8B fine-tune)
 

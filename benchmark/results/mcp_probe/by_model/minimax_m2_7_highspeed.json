@@ -1,0 +1,51 @@
+[
+  {
+    "model": "MiniMax M2.7 (highspeed)",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 56.0,
+    "credit_error": false
+  },
+  {
+    "model": "MiniMax M2.7 (highspeed)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 2,
+    "secs": 61.5,
+    "credit_error": false
+  },
+  {
+    "model": "MiniMax M2.7 (highspeed)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 3,
+    "secs": 39.7,
+    "credit_error": false
+  },
+  {
+    "model": "MiniMax M2.7 (highspeed)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 3,
+    "secs": 230.9,
+    "credit_error": false
+  },
+  {
+    "model": "MiniMax M2.7 (highspeed)",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 184.7,
+    "credit_error": false
+  },
+  {
+    "model": "MiniMax M2.7 (highspeed)",
+    "probe_id": "extract_then_edit_form",
+    "score": 3,
+    "secs": 231.2,
+    "credit_error": false
+  },
+  {
+    "model": "MiniMax M2.7 (highspeed)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 3,
+    "secs": 347.7,
+    "credit_error": false
+  }
+]

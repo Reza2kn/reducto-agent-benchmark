@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 3,
+    "secs": 54.9,
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 1,
+    "secs": 140.0,
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 242.5,
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 0,
+    "secs": 315.8,
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 173.9,
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "extract_then_edit_form",
+    "score": 3,
+    "secs": 166.5,
+    "credit_error": false
+  },
+  {
+    "model": "Gemini 3.1 Pro (custom-tools preview)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 3,
+    "secs": 418.5,
+    "credit_error": false
+  }
+]

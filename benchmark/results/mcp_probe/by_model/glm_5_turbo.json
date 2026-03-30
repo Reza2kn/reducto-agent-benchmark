@@ -1,0 +1,51 @@
+[
+  {
+    "model": "GLM-5 Turbo",
+    "probe_id": "upload_persist_array_extract",
+    "score": 1,
+    "secs": 60.3,
+    "credit_error": false
+  },
+  {
+    "model": "GLM-5 Turbo",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 73.7,
+    "credit_error": false
+  },
+  {
+    "model": "GLM-5 Turbo",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 119.2,
+    "credit_error": false
+  },
+  {
+    "model": "GLM-5 Turbo",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 45.7,
+    "credit_error": false
+  },
+  {
+    "model": "GLM-5 Turbo",
+    "probe_id": "extract_then_edit_form",
+    "score": 2,
+    "secs": 254.7,
+    "credit_error": false
+  },
+  {
+    "model": "GLM-5 Turbo",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 2,
+    "secs": 250.3,
+    "credit_error": false
+  },
+  {
+    "model": "GLM-5 Turbo",
+    "probe_id": "agentic_parse_citations",
+    "score": 0,
+    "secs": 5606.3,
+    "credit_error": false
+  }
+]

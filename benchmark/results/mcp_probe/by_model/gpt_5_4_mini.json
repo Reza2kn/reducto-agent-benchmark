@@ -1,0 +1,51 @@
+[
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "upload_persist_array_extract",
+    "score": 2,
+    "secs": 7.9,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "dual_doc_fan_out",
+    "score": 2,
+    "secs": 7.6,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 160.9,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 230.0,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 126.4,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "extract_then_edit_form",
+    "score": 3,
+    "secs": 84.3,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-5.4 Mini",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 1,
+    "secs": 7.7,
+    "credit_error": false
+  }
+]

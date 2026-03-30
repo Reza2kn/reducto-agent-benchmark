@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "upload_persist_array_extract",
+    "score": 2,
+    "secs": 11.7,
+    "credit_error": false
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 48.7,
+    "credit_error": false
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "dual_doc_fan_out",
+    "score": 3,
+    "secs": 22.7,
+    "credit_error": false
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 1,
+    "secs": 10.4,
+    "credit_error": false
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "extract_then_edit_form",
+    "score": 1,
+    "secs": 509.7,
+    "credit_error": false
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 717.1,
+    "credit_error": false
+  },
+  {
+    "model": "Mistral Devstral Small",
+    "probe_id": "split_preserve_extract_range",
+    "score": 3,
+    "secs": 1672.3,
+    "credit_error": false
+  }
+]

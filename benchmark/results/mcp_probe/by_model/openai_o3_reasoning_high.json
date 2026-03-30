@@ -1,0 +1,51 @@
+[
+  {
+    "model": "OpenAI o3 (reasoning=high)",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 87.5,
+    "credit_error": false
+  },
+  {
+    "model": "OpenAI o3 (reasoning=high)",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 181.6,
+    "credit_error": false
+  },
+  {
+    "model": "OpenAI o3 (reasoning=high)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 3,
+    "secs": 372.1,
+    "credit_error": false
+  },
+  {
+    "model": "OpenAI o3 (reasoning=high)",
+    "probe_id": "extract_then_edit_form",
+    "score": 3,
+    "secs": 333.2,
+    "credit_error": false
+  },
+  {
+    "model": "OpenAI o3 (reasoning=high)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 3,
+    "secs": 679.9,
+    "credit_error": false
+  },
+  {
+    "model": "OpenAI o3 (reasoning=high)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 3,
+    "secs": 1091.3,
+    "credit_error": false
+  },
+  {
+    "model": "OpenAI o3 (reasoning=high)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 1448.5,
+    "credit_error": false
+  }
+]

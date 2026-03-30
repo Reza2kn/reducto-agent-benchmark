@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 67.5,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "upload_persist_array_extract",
+    "score": 3,
+    "secs": 72.4,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "dual_doc_fan_out",
+    "score": 3,
+    "secs": 39.4,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 121.4,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "extract_then_edit_form",
+    "score": 3,
+    "secs": 155.0,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 397.8,
+    "credit_error": false
+  },
+  {
+    "model": "Claude Opus 4.6 + thinking",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 3,
+    "secs": 340.0,
+    "credit_error": false
+  }
+]

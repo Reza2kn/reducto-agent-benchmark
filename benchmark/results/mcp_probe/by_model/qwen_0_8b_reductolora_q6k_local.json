@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Qwen-0.8B-ReductoLoRA-Q6K (local)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 107.5,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-ReductoLoRA-Q6K (local)",
+    "probe_id": "classify_route_extract",
+    "score": 0,
+    "secs": 125.7,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-ReductoLoRA-Q6K (local)",
+    "probe_id": "agentic_parse_citations",
+    "score": 2,
+    "secs": 155.5,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-ReductoLoRA-Q6K (local)",
+    "probe_id": "extract_then_edit_form",
+    "score": 1,
+    "secs": 227.1,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-ReductoLoRA-Q6K (local)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 2,
+    "secs": 288.8,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-ReductoLoRA-Q6K (local)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 1,
+    "secs": 885.6,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen-0.8B-ReductoLoRA-Q6K (local)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 916.2,
+    "credit_error": false
+  }
+]

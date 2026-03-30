@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 33.4,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 26.3,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "agentic_parse_citations",
+    "score": 2,
+    "secs": 102.0,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "extract_then_edit_form",
+    "score": 2,
+    "secs": 77.4,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 1,
+    "secs": 756.1,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 1,
+    "secs": 1148.0,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3 Coder Next (ionstream fp8)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 3605.8,
+    "credit_error": false
+  }
+]

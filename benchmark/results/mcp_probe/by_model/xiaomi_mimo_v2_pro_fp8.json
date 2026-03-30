@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Xiaomi MiMo V2 Pro (fp8)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 58.5,
+    "credit_error": false
+  },
+  {
+    "model": "Xiaomi MiMo V2 Pro (fp8)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 1,
+    "secs": 94.6,
+    "credit_error": false
+  },
+  {
+    "model": "Xiaomi MiMo V2 Pro (fp8)",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 123.3,
+    "credit_error": false
+  },
+  {
+    "model": "Xiaomi MiMo V2 Pro (fp8)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 45.7,
+    "credit_error": false
+  },
+  {
+    "model": "Xiaomi MiMo V2 Pro (fp8)",
+    "probe_id": "agentic_parse_citations",
+    "score": 2,
+    "secs": 151.3,
+    "credit_error": false
+  },
+  {
+    "model": "Xiaomi MiMo V2 Pro (fp8)",
+    "probe_id": "extract_then_edit_form",
+    "score": 2,
+    "secs": 139.5,
+    "credit_error": false
+  },
+  {
+    "model": "Xiaomi MiMo V2 Pro (fp8)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 2,
+    "secs": 299.5,
+    "credit_error": false
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Qwen3.5-122B-A10B",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 111.6,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-122B-A10B",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 23.4,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-122B-A10B",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 122.2,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-122B-A10B",
+    "probe_id": "upload_persist_array_extract",
+    "score": 1,
+    "secs": 183.0,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-122B-A10B",
+    "probe_id": "extract_then_edit_form",
+    "score": 2,
+    "secs": 47.9,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-122B-A10B",
+    "probe_id": "agentic_parse_citations",
+    "score": 2,
+    "secs": 198.2,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-122B-A10B",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 2,
+    "secs": 280.3,
+    "credit_error": false
+  }
+]

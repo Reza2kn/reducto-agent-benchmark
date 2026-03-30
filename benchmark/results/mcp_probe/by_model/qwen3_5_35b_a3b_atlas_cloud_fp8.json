@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "classify_route_extract",
+    "score": 0,
+    "secs": 9.6,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "upload_persist_array_extract",
+    "score": 1,
+    "secs": 9.4,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 85.8,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "dual_doc_fan_out",
+    "score": 1,
+    "secs": 29.4,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "extract_then_edit_form",
+    "score": 2,
+    "secs": 125.0,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 1,
+    "secs": 107.6,
+    "credit_error": false
+  },
+  {
+    "model": "Qwen3.5-35B-A3B (Atlas Cloud fp8)",
+    "probe_id": "agentic_parse_citations",
+    "score": 2,
+    "secs": 1249.6,
+    "credit_error": false
+  }
+]

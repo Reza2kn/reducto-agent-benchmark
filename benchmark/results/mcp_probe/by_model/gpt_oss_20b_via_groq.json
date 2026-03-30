@@ -1,0 +1,51 @@
+[
+  {
+    "model": "GPT-OSS 20B via Groq",
+    "probe_id": "upload_persist_array_extract",
+    "score": 3,
+    "secs": 20.9,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-OSS 20B via Groq",
+    "probe_id": "split_preserve_extract_range",
+    "score": 2,
+    "secs": 31.2,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-OSS 20B via Groq",
+    "probe_id": "dual_doc_fan_out",
+    "score": 3,
+    "secs": 34.8,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-OSS 20B via Groq",
+    "probe_id": "classify_route_extract",
+    "score": 3,
+    "secs": 174.4,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-OSS 20B via Groq",
+    "probe_id": "agentic_parse_citations",
+    "score": 3,
+    "secs": 145.4,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-OSS 20B via Groq",
+    "probe_id": "full_enterprise_pipeline",
+    "score": 2,
+    "secs": 75.0,
+    "credit_error": false
+  },
+  {
+    "model": "GPT-OSS 20B via Groq",
+    "probe_id": "extract_then_edit_form",
+    "score": 3,
+    "secs": 399.0,
+    "credit_error": false
+  }
+]
